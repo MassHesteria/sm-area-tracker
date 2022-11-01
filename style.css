@@ -1,0 +1,223 @@
+body {
+   background-color: black;
+   font-family: Arial, Helvetica, sans-serif;
+}
+
+ul.top {
+   display: flex;
+   flex-wrap: wrap;
+}
+
+ul {
+   list-style: none;
+   justify-content: left;
+   padding-inline-start: 40px;
+}
+
+ul.sub_list {
+   padding-inline-start: 0px;
+}
+
+ul.portal_list {
+   padding-inline-start: 0px;
+   padding-right: 20px;
+   margin-left: 10px;
+   font-size: 18px;
+   display: flex;
+   flex-wrap: wrap;
+}
+
+#master_item_counter {
+   margin-top: 16px;
+   height: 30px;
+   font-size: 20px;
+   color: white;
+}
+
+input.counter {
+   width: 50px;
+   height: 30px;
+   font-size: 22px;
+   border: none;
+   position: relative;
+   top: -1px;
+   background: white;
+   padding-top: 0px;
+   padding-bottom: 0px;
+   font-weight: bold;
+}
+
+select.total {
+   width: 50px;
+   height: 30px;
+   font-size: 22px;
+   margin-left: 2px;
+   margin-right: 20px;
+   border: none;
+   font-weight: bold;
+}
+
+select.boss {
+   width: 50px;
+   height: 30px;
+   margin-right: 8px;
+   font-size: 20px;
+   float: right;
+   font-weight: bold;
+}
+
+#portal_list {
+   float: left;
+   width: 500px;
+   border-width: 2px;
+   border-color: white;
+   padding-right: 0px;
+   height: 100%;
+}
+
+.portal {
+   display: inline-block;
+   background-color: limegreen;
+   border-style: solid;
+   border-width: 2px;
+   border-color: black;
+   list-style: none;
+   padding: 2px 5px 2px 5px;
+   line-height: 34px;
+   text-align: center;
+   font-weight: bold;
+   width: 200px;
+   height: 34px;
+   cursor: pointer;
+   -webkit-user-select: none;  
+   -moz-user-select: none;    
+   -ms-user-select: none;      
+   user-select: none;
+}
+
+li.dropdowns {
+   height: 36px;
+}
+
+li.spacer {
+   height: 2px;
+}
+
+li.set_column {
+   border-color: white;
+   width: 20px;
+   height: 20px;
+   /*border: 2px solid;*/
+   /*border-style: dotted;*/
+   border-style: solid;
+   /*border-width: thin;*/
+   padding: 1px 2px 1px 2px;
+   margin-top: 24px;
+   color: gray;
+   /*background-color: #777777;*/
+   text-align: center;
+   font-weight: bold;
+   font-size: 16px;
+   cursor: pointer;
+}
+
+.sub_button {
+   border-style: dashed;
+   border-width: thin;
+   width: 70px;
+   height: 20px;
+   padding: 4px 4px 4px 4px;
+   margin-left: 22px;
+   font-family: Arial, Helvetica, sans-serif;
+   text-align: center;
+   font-weight: bold;
+   font-size: 14px;
+   cursor: pointer;
+   -webkit-user-select: none;  
+   -moz-user-select: none;    
+   -ms-user-select: none;      
+   user-select: none;
+}
+
+.add_button {
+   border-color: green;
+   color: green;
+}
+
+.copy_button {
+   border-color: gold;
+   color: gold;
+}
+
+.drop_button {
+   border-color: red;
+   color: red;
+}
+
+li.arrow {
+   color: white;
+   font-size: 20px;
+   list-style: none;
+   text-align: center;
+   cursor: default;
+   -webkit-user-select: none;  
+   -moz-user-select: none;    
+   -ms-user-select: none;      
+   user-select: none;
+}
+
+li.top {
+   font-size: 18px;
+   width: 170px;
+   margin-top: 30px;
+}
+
+.red_brinstar {
+   background-color: rgb(255, 130, 130);
+}
+
+.blue_brinstar {
+   background-color: cyan;
+}
+
+.upper_norfair {
+   background-color: gray;
+   color: #e5e5e5;
+}
+
+.lower_norfair {
+   background-color: #fafafa;
+}
+
+.crocomire {
+   background-color: crimson;
+}
+
+.kraids_lair {
+   background-color: pink;
+}
+
+.green_hills {
+   background-color: limegreen;
+}
+
+.wrecked_ship{
+   background-color: yellow;
+}
+
+.west_maridia {
+   background-color: orange;
+}
+
+.east_maridia {
+   background-color: rgb(138, 42, 138);
+   color: #e5e5e5;
+}
+
+.tourian {
+   background: red; /* For browsers that do not support gradients */
+   background: -webkit-linear-gradient(left, orange , yellow, green, cyan, blue, violet); /* For Safari 5.1 to 6.0 */
+   background: -o-linear-gradient(right, orange, yellow, green, cyan, blue, violet); /* For Opera 11.1 to 12.0 */
+   background: -moz-linear-gradient(right, orange, yellow, green, cyan, blue, violet); /* For Firefox 3.6 to 15 */
+   background: linear-gradient(to right, orange , yellow, green, cyan, blue, violet); /* Standard syntax (must be last) */
+}
