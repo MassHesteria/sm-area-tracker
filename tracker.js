@@ -315,19 +315,24 @@ function copyColumn() {
 }
 
 function setPair(src,dst) {
+
+      // Grab the parent list item of the src portal
       var theParent = src.parentNode;
 
+      // Stop drawing the selection border around the src portal
       src.style = null;
 
+      // Remove all portals other than the src from the parent
       while (theParent.children.length > 1) {
          theParent.removeChild(theParent.lastChild);
       }
 
+      // Are the src and dst the same? All done
       if (src == dst) {
-         firstOfPair = null;
          return;
       }
 
+      // Put a copy of the dst next to the src
       var clonedNode = dst.cloneNode(true);
       theParent.appendChild(clonedNode);
 }
@@ -336,7 +341,11 @@ function selectItem(src) {
 
    if (firstOfPair !== null) {
       setPair(firstOfPair,src);
-      setPair(src,firstOfPair);
+
+      if (firstOfPair !== src) {
+         setPair(src,firstOfPair);
+      }
+
       firstOfPair = null;
       return;
    }
