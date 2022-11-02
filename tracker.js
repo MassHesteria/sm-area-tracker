@@ -50,6 +50,7 @@ function initialize(body) {
    addSpacer('sub2');
    addSpacer('sub2');
    addSpacer('sub2');
+
    addDropdowns('sub2','kraids_lair',true);
    addEntry('sub2','kraids_lair', "Kraid's Lair");
    addSpacer('sub2');
@@ -235,10 +236,7 @@ function addEntry(listName,className,name) {
       selectItem(newEntry);
    }
    newEntry.onauxclick = function(e) {
-      if (e.button == 1) {
-         addColumn();
-         selectItem(newEntry);
-      } else if (e.button == 2) {
+      if (e.button == 2) {
 
          if (firstOfPair !== null) {
             firstOfPair.style = null;
@@ -251,67 +249,6 @@ function addEntry(listName,className,name) {
 
    newPair.appendChild(newEntry);
    masterList.appendChild(newPair);
-}
-
-function addColumn() {
-   columnCount += 1;
-   var columnId = "col" + columnCount;
-
-   var columns = document.getElementById("columns");
-
-   var newColumn = document.createElement("li");
-   newColumn.classList.add("top");
-
-   var newList = document.createElement("ul");
-   newList.id = columnId;
-
-   var newButton = document.createElement("li");
-   newButton.id = columnId + "_btn";
-   newButton.classList.add("set_column");
-   newButton.onclick = function() {
-      setCurrentColumn(columnId);
-   }
-   newButton.onauxclick = function(e) {
-      if (e.button == 2) {
-         removeItem(columnId);
-      }
-   }
-
-   newList.appendChild(newButton);
-   newColumn.appendChild(newList);
-   columns.appendChild(newColumn);
-
-   setCurrentColumn(columnId);
-}
-
-function copyColumn() {
-   columnCount += 1;
-   var columnId = "col" + columnCount;
-   
-   var columns = document.getElementById("columns");
-   var columnToCopy = document.getElementById(currentColumn);
-
-   var newColumn = document.createElement("li");
-   newColumn.classList.add("top");
-
-   var newList = columnToCopy.cloneNode(true);
-   newList.id = columnId;
-   newList.lastChild.id = columnId + "_btn";
-   newList.lastChild.style = null;
-   newList.lastChild.onclick = function() {
-      setCurrentColumn(columnId);
-   }
-   newList.lastChild.onauxclick = function(e) {
-      if (e.button == 2) {
-         removeItem(columnId);
-      }
-   }
-
-   newColumn.appendChild(newList);
-   columns.insertBefore(newColumn,columnToCopy.parentNode);
-
-   //columns.appendChild(newColumn);
-   //setCurrentColumn(columnId);
 }
 
 function setPair(src,dst) {
@@ -349,54 +286,4 @@ function selectItem(src) {
       firstOfPair = null;
       return;
    }
-
-   /*var column = document.getElementById(currentColumn);
-
-   if (column.children.length >= 2) {
-   var newArrow = document.createElement("li");
-   newArrow.innerHTML += "&#8595;";
-   newArrow.classList.add("arrow");
-   column.insertBefore(newArrow,column.lastChild);
-   }
-
-   var newItem = document.createElement("li");
-   newItem.innerText = src.innerText;
-
-   for (var i = 0; i < src.classList.length; i++) {
-      newItem.classList.add(src.classList[i]);
-   }
-   newItem.style = "cursor: default;";
-   column.insertBefore(newItem,column.lastChild);*/
-}
-
-function removeItem(columnId) {
-
-   columnId = columnId || currentColumn;
-   var column = document.getElementById(columnId);
-   var children = column.children;
-
-   if (children.length <= 1) {
-      return;
-   }
-
-   column.removeChild(children.item(children.length - 2))
-
-   if (children.length <= 1) {
-      return;
-   }
-
-   column.removeChild(children.item(children.length - 2))
-}
-
-function setCurrentColumn(columnId) {
-
-   if (columnCount > 1) {
-      var old_btn = document.getElementById(currentColumn + "_btn");
-      old_btn.style = null;
-   }
-
-   currentColumn = columnId;
-
-   var new_btn = document.getElementById(currentColumn + "_btn");
-   new_btn.style = "background-color: white; border-style: solid;";
 }
