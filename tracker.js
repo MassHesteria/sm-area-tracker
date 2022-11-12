@@ -1,5 +1,3 @@
-currentColumn = "";
-columnCount = 0;
 firstOfPair = null;
 itemCounter = 16;
 
@@ -8,71 +6,77 @@ function initialize(body) {
       return false;
    }
 
-   updateInstructions();
+   let settings = loadSettings();
+   let showBosses = settings.show_bosses == "yes";
+   let selectMode = settings.select_mode;
+
+   if (settings.show_header == "yes") {
+      updateInstructions(selectMode);
+   }
 
    addDropdowns('sub1','blue_brinstar',false);
-   addEntry('sub1','blue_brinstar', 'Retro PBs');
-   addEntry('sub1', 'blue_brinstar', 'G4');
-   addEntry('sub1', 'blue_brinstar', 'Kago');
-   addEntry('sub1', 'blue_brinstar', 'Crab');
-   addEntry('sub1', 'blue_brinstar', 'Moat');
+   addEntry('sub1','blue_brinstar', 'Retro PBs', selectMode);
+   addEntry('sub1', 'blue_brinstar', 'G4', selectMode);
+   addEntry('sub1', 'blue_brinstar', 'Kago', selectMode);
+   addEntry('sub1', 'blue_brinstar', 'Crab', selectMode);
+   addEntry('sub1', 'blue_brinstar', 'Moat', selectMode);
    addSpacer('sub1');
 
    addDropdowns('sub1','green_hills',false);
-   addEntry('sub1', 'green_hills', 'Green Elevator');
-   addEntry('sub1', 'green_hills', 'Green Hills');
-   addEntry('sub1', 'green_hills', 'Noob Bridge');
+   addEntry('sub1', 'green_hills', 'Green Elevator', selectMode);
+   addEntry('sub1', 'green_hills', 'Green Hills', selectMode);
+   addEntry('sub1', 'green_hills', 'Noob Bridge', selectMode);
    addSpacer('sub1');
 
    addDropdowns('sub1','red_brinstar',false);
-   addEntry('sub1', 'red_brinstar', 'Red Elevator');
-   addEntry('sub1', 'red_brinstar', 'Maridia Escape');
-   addEntry('sub1', 'red_brinstar', 'Red Tower');
-   addEntry('sub1', 'red_brinstar', 'Tube');
-   addEntry('sub1', 'red_brinstar', 'Above Kraid');
-   addEntry('sub1', 'red_brinstar', 'Kraid Entry');
+   addEntry('sub1', 'red_brinstar', 'Red Elevator', selectMode);
+   addEntry('sub1', 'red_brinstar', 'Maridia Escape', selectMode);
+   addEntry('sub1', 'red_brinstar', 'Red Tower', selectMode);
+   addEntry('sub1', 'red_brinstar', 'Tube', selectMode);
+   addEntry('sub1', 'red_brinstar', 'Above Kraid', selectMode);
+   addEntry('sub1', 'red_brinstar', 'Kraid Entry', selectMode);
    addSpacer('sub1');
 
    addDropdowns('sub1','west_maridia',false);
-   addEntry('sub1','west_maridia', 'Red Fish');
-   addEntry('sub1','west_maridia', 'PreAqueduct');
-   addEntry('sub1','west_maridia', 'Main Street');
-   addEntry('sub1','west_maridia', 'Map Station');
+   addEntry('sub1','west_maridia', 'Red Fish', selectMode);
+   addEntry('sub1','west_maridia', 'PreAqueduct', selectMode);
+   addEntry('sub1','west_maridia', 'Main Street', selectMode);
+   addEntry('sub1','west_maridia', 'Map Station', selectMode);
 
    addDropdowns('sub2','upper_norfair',false);
-   addEntry('sub2','upper_norfair', 'Elevator Entry');
-   addEntry('sub2','upper_norfair', 'Kraid Mouth');
-   addEntry('sub2','upper_norfair', 'Croc Entry');
-   addEntry('sub2','upper_norfair', 'Single Chamber');
-   addEntry('sub2','upper_norfair', 'Lava Dive');
+   addEntry('sub2','upper_norfair', 'Elevator Entry', selectMode);
+   addEntry('sub2','upper_norfair', 'Kraid Mouth', selectMode);
+   addEntry('sub2','upper_norfair', 'Croc Entry', selectMode);
+   addEntry('sub2','upper_norfair', 'Single Chamber', selectMode);
+   addEntry('sub2','upper_norfair', 'Lava Dive', selectMode);
    addSpacer('sub2');
 
    addDropdowns('sub2','crocomire',false);
-   addEntry('sub2','crocomire', 'Croc Exit');
+   addEntry('sub2','crocomire', 'Croc Exit', selectMode);
    addSpacer('sub2');
    addSpacer('sub2');
    addSpacer('sub2');
 
-   addDropdowns('sub2','kraids_lair',true);
-   addEntry('sub2','kraids_lair', "Kraid's Lair");
+   addDropdowns('sub2','kraids_lair',showBosses);
+   addEntry('sub2','kraids_lair', "Kraid's Lair", selectMode);
    addSpacer('sub2');
 
-   addDropdowns('sub2','lower_norfair',true);
-   addEntry('sub2','lower_norfair', 'Ridley Mouth');
-   addEntry('sub2','lower_norfair', '3 Musketeers');
+   addDropdowns('sub2','lower_norfair',showBosses);
+   addEntry('sub2','lower_norfair', 'Ridley Mouth', selectMode);
+   addEntry('sub2','lower_norfair', '3 Musketeers', selectMode);
    addSpacer('sub2');
 
-   addDropdowns('sub2','wrecked_ship',true);
-   addEntry('sub2','wrecked_ship', 'Ocean');
-   addEntry('sub2','wrecked_ship', 'WS Exit');
+   addDropdowns('sub2','wrecked_ship',showBosses);
+   addEntry('sub2','wrecked_ship', 'Ocean', selectMode);
+   addEntry('sub2','wrecked_ship', 'WS Exit', selectMode);
    addSpacer('sub2');
 
-   addDropdowns('sub2','east_maridia',true);
-   addEntry('sub2','east_maridia', 'Aqueduct');
-   addEntry('sub2','east_maridia', 'Highway');
+   addDropdowns('sub2','east_maridia',showBosses);
+   addEntry('sub2','east_maridia', 'Aqueduct', selectMode);
+   addEntry('sub2','east_maridia', 'Highway', selectMode);
    addSpacer('sub2');
 
-   addEntry('sub2','tourian', 'Tourian');
+   addEntry('sub2','tourian', 'Tourian', selectMode);
    addCounter('sub2');
 }
 
@@ -245,7 +249,7 @@ function addSpacer(listName) {
    masterList.appendChild(newSpacer);
 }
 
-function addEntry(listName,className,name) {
+function addEntry(listName,className,name,mode) {
    var masterList = document.getElementById(listName);
    var newPair = document.createElement("li");
 
@@ -253,18 +257,30 @@ function addEntry(listName,className,name) {
 
    newEntry.innerText = name;
    newEntry.classList.add("portal", className);
-   newEntry.onclick = function(e) {
-      selectItem(newEntry);
-   }
-   newEntry.onauxclick = function(e) {
-      if (e.button == 2) {
 
+   if (mode == "left") {
+      newEntry.onclick = function(e) {
          if (firstOfPair !== null) {
-            firstOfPair.style = null;
+            selectItem(newEntry);
+         } else {
+            firstOfPair = newEntry;
+            firstOfPair.style = "border-width: 4px; border-style: solid; border-color: blue";
          }
+      }
+   } else {
+      newEntry.onclick = function(e) {
+         selectItem(newEntry);
+      }
+      newEntry.onauxclick = function(e) {
+         if (e.button == 2) {
 
-         firstOfPair = newEntry;
-         firstOfPair.style = "border-width: 4px; border-style: solid; border-color: blue";
+            if (firstOfPair !== null) {
+               firstOfPair.style = null;
+            }
+
+            firstOfPair = newEntry;
+            firstOfPair.style = "border-width: 4px; border-style: solid; border-color: blue";
+         }
       }
    }
 
@@ -309,8 +325,12 @@ function selectItem(src) {
    }
 }
 
-function updateInstructions() {
+function updateInstructions(mode) {
+   let first = mode == "left" ? "Left" : "Right";
+   let second = mode == "left" ? "right" : "left";
+
    var instDiv = document.getElementById('instructions');
-   instDiv.innerText = 'Right click to select first portal then ' +
-      'left click another portal to link them';
+   instDiv.innerHTML = '<u>' + first + ' click</u> to select first portal ' +
+      '<u>then left click</u> another portal to link them ' +
+      '<a href="customize.htm">CUSTOMIZE</a>';
 }

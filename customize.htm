@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Customize Area Tracker</title>
+      <link rel="stylesheet" href="style.css">
+      <script src="settings.js"></script>
+      <script src="customize.js"></script>
+   </head>
+   <body onload="initialize()">
+
+      <div id="settings">
+
+      <div id="settings_title">Customize Area Tracker</div>
+
+      <label for="select_mode">Select First Portal:</label>
+      <select name="select_mode" id="select_mode" onchange="saveChanges()">
+         <option value="right">Right Click</option>
+         <option value="left">Left Click</option>
+      </select>
+
+      <br /><br />
+
+      <label for="show_bosses">Show Boss Combos:</label>
+      <select name="show_bosses" id="show_bosses" onchange="saveChanges()">
+         <option value="yes">Yes</option>
+         <option value="no">No</option>
+      </select>
+
+      <br /><br />
+
+      <label for="show_header">Show Header:</label>
+      <select name="show_header" id="show_header" onchange="saveChanges()">
+         <option value="yes">Yes</option>
+         <option value="no">No</option>
+      </select>
+
+      <br /><br /><br />
+
+      <a href="index.htm">OPEN TRACKER</a>
+      <span id="restore" onclick="restoreDefaults()">RESTORE DEFAULTS</span>
+
+      </div>
+
+   </body>
+</html>
