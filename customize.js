@@ -1,7 +1,8 @@
 const inputValues = [
    'select_mode',
    'show_bosses',
-   'show_header'
+   'show_header',
+   'num_columns'
 ];
 
 function initialize() {

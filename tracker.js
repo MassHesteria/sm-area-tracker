@@ -14,70 +14,46 @@ function initialize(body) {
       updateInstructions(selectMode);
    }
 
-   addDropdowns('sub1','blue_brinstar',false);
-   addEntry('sub1','blue_brinstar', 'Retro PBs', selectMode);
-   addEntry('sub1', 'blue_brinstar', 'G4', selectMode);
-   addEntry('sub1', 'blue_brinstar', 'Kago', selectMode);
-   addEntry('sub1', 'blue_brinstar', 'Crab', selectMode);
-   addEntry('sub1', 'blue_brinstar', 'Moat', selectMode);
-   addSpacer('sub1');
+   addArea('sub1', 'blue_brinstar', selectMode, false,
+      [ 'Retro PBs', 'G4', 'Kago', 'Crab', 'Moat' ]);
 
-   addDropdowns('sub1','green_hills',false);
-   addEntry('sub1', 'green_hills', 'Green Elevator', selectMode);
-   addEntry('sub1', 'green_hills', 'Green Hills', selectMode);
-   addEntry('sub1', 'green_hills', 'Noob Bridge', selectMode);
-   addSpacer('sub1');
+   addArea('sub1', 'green_hills', selectMode, false,
+      [ 'Green Elevator', 'Green Hills', 'Noob Bridge' ]);
 
-   addDropdowns('sub1','red_brinstar',false);
-   addEntry('sub1', 'red_brinstar', 'Red Elevator', selectMode);
-   addEntry('sub1', 'red_brinstar', 'Maridia Escape', selectMode);
-   addEntry('sub1', 'red_brinstar', 'Red Tower', selectMode);
-   addEntry('sub1', 'red_brinstar', 'Tube', selectMode);
-   addEntry('sub1', 'red_brinstar', 'Above Kraid', selectMode);
-   addEntry('sub1', 'red_brinstar', 'Kraid Entry', selectMode);
-   addSpacer('sub1');
+   let redBrinSub = settings.num_columns == 3 ? 'sub2' : 'sub1';
+   addArea(redBrinSub, 'red_brinstar', selectMode, false,
+      [ 'Red Elevator', 'Maridia Escape', 'Red Tower',
+        'Tube', 'Above Kraid', 'Kraid Entry' ]);
 
-   addDropdowns('sub1','west_maridia',false);
-   addEntry('sub1','west_maridia', 'Red Fish', selectMode);
-   addEntry('sub1','west_maridia', 'PreAqueduct', selectMode);
-   addEntry('sub1','west_maridia', 'Main Street', selectMode);
-   addEntry('sub1','west_maridia', 'Map Station', selectMode);
+   addArea('sub1', 'west_maridia', selectMode, false,
+      [ 'Red Fish', 'PreAqueduct', 'Main Street', 'Map Station' ]);
 
-   addDropdowns('sub2','upper_norfair',false);
-   addEntry('sub2','upper_norfair', 'Elevator Entry', selectMode);
-   addEntry('sub2','upper_norfair', 'Kraid Mouth', selectMode);
-   addEntry('sub2','upper_norfair', 'Croc Entry', selectMode);
-   addEntry('sub2','upper_norfair', 'Single Chamber', selectMode);
-   addEntry('sub2','upper_norfair', 'Lava Dive', selectMode);
-   addSpacer('sub2');
+   addArea('sub2', 'upper_norfair', selectMode, false,
+      [ 'Elevator Entry', 'Kraid Mouth', 'Croc Entry',
+        'Single Chamber', 'Lava Dive' ]);
 
-   addDropdowns('sub2','crocomire',false);
-   addEntry('sub2','crocomire', 'Croc Exit', selectMode);
-   addSpacer('sub2');
-   addSpacer('sub2');
-   addSpacer('sub2');
+   addArea('sub2', 'crocomire', selectMode, false,
+      [ 'Croc Exit' ]);
 
-   addDropdowns('sub2','kraids_lair',showBosses);
-   addEntry('sub2','kraids_lair', "Kraid's Lair", selectMode);
-   addSpacer('sub2');
+   let bossSub = settings.num_columns == 3 ? 'sub3' : 'sub2';
+   addSpacer(bossSub);
+   addSpacer(bossSub);
 
-   addDropdowns('sub2','lower_norfair',showBosses);
-   addEntry('sub2','lower_norfair', 'Ridley Mouth', selectMode);
-   addEntry('sub2','lower_norfair', '3 Musketeers', selectMode);
-   addSpacer('sub2');
+   addArea(bossSub, 'kraids_lair', selectMode, showBosses,
+      [ "Kraid's Lair" ]);
 
-   addDropdowns('sub2','wrecked_ship',showBosses);
-   addEntry('sub2','wrecked_ship', 'Ocean', selectMode);
-   addEntry('sub2','wrecked_ship', 'WS Exit', selectMode);
-   addSpacer('sub2');
+   addArea(bossSub, 'lower_norfair', selectMode, showBosses,
+      [ 'Ridley Mouth', '3 Musketeers' ]);
 
-   addDropdowns('sub2','east_maridia',showBosses);
-   addEntry('sub2','east_maridia', 'Aqueduct', selectMode);
-   addEntry('sub2','east_maridia', 'Highway', selectMode);
-   addSpacer('sub2');
+   addArea(bossSub, 'wrecked_ship', selectMode, showBosses,
+      [ 'Ocean', 'WS Exit' ]);
 
-   addEntry('sub2','tourian', 'Tourian', selectMode);
-   addCounter('sub2');
+   addArea(bossSub, 'east_maridia', selectMode, showBosses,
+      [ 'Aqueduct', 'Highway' ]);
+
+   addSpacer(bossSub);
+   addEntry(bossSub, 'tourian', 'Tourian', selectMode);
+   addCounter(bossSub);
 }
 
 let getNumItems = (zone) => {
@@ -286,6 +262,17 @@ function addEntry(listName,className,name,mode) {
 
    newPair.appendChild(newEntry);
    masterList.appendChild(newPair);
+}
+
+function addArea(listName,className,mode,showBosses,portals) {
+   var listObj = document.getElementById(listName);
+   if (listObj.childElementCount > 0) {
+      addSpacer(listName);
+   }
+   addDropdowns(listName,className,showBosses);
+   portals.forEach((p) => {
+      addEntry(listName,className,p,mode);
+   });
 }
 
 function setPair(src,dst) {
