@@ -140,6 +140,17 @@ select.boss {
    user-select: none;
 }
 
+.zoneTitle {
+   color: black;
+   margin-left: 2px;
+   margin-bottom: 2px;
+   margin-right: 8px;
+   padding: 4px 0px 2px 0px;
+   font-style: italic;
+   font-size: 14px;
+   text-align: center;
+}
+
 li.dropdowns {
    height: 36px;
 }

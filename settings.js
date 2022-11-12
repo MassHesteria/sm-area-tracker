@@ -3,7 +3,8 @@ const defaultSettings = {
    "select_mode" : "right",
    "show_bosses" : "yes",
    "show_header" : "yes",
-   "num_columns" : "2"
+   "num_columns" : "2",
+   "show_titles" : "no"
 };
 
 function loadSettings() {

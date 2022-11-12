@@ -9,46 +9,55 @@ function initialize(body) {
    let settings = loadSettings();
    let showBosses = settings.show_bosses == "yes";
    let selectMode = settings.select_mode;
+   let showTitles = settings.show_titles == "yes";
 
    if (settings.show_header == "yes") {
       updateInstructions(selectMode);
    }
 
-   addArea('sub1', 'blue_brinstar', selectMode, false,
+   addArea('Crateria', 'sub1', 'blue_brinstar',
+      selectMode, showTitles, false,
       [ 'Retro PBs', 'G4', 'Kago', 'Crab', 'Moat' ]);
 
-   addArea('sub1', 'green_hills', selectMode, false,
+   addArea('Green Brinstar', 'sub1', 'green_hills',
+      selectMode, showTitles, false,
       [ 'Green Elevator', 'Green Hills', 'Noob Bridge' ]);
 
    let redBrinSub = settings.num_columns == 3 ? 'sub2' : 'sub1';
-   addArea(redBrinSub, 'red_brinstar', selectMode, false,
+   addArea('Red Brinstar', redBrinSub, 'red_brinstar',
+      selectMode, showTitles, false,
       [ 'Red Elevator', 'Maridia Escape', 'Red Tower',
         'Tube', 'Above Kraid', 'Kraid Entry' ]);
 
-   addArea('sub1', 'west_maridia', selectMode, false,
+   addArea('West Maridia', 'sub1', 'west_maridia',
+      selectMode, showTitles, false,
       [ 'Red Fish', 'PreAqueduct', 'Main Street', 'Map Station' ]);
 
-   addArea('sub2', 'upper_norfair', selectMode, false,
+   addArea('Upper Norfair', 'sub2', 'upper_norfair',
+      selectMode, showTitles, false,
       [ 'Elevator Entry', 'Kraid Mouth', 'Croc Entry',
         'Single Chamber', 'Lava Dive' ]);
 
-   addArea('sub2', 'crocomire', selectMode, false,
+   addArea('Crocomire', 'sub2', 'crocomire',
+      selectMode, showTitles, false,
       [ 'Croc Exit' ]);
 
    let bossSub = settings.num_columns == 3 ? 'sub3' : 'sub2';
-   addSpacer(bossSub);
-   addSpacer(bossSub);
 
-   addArea(bossSub, 'kraids_lair', selectMode, showBosses,
+   addArea("Kraid's Lair", bossSub, 'kraids_lair',
+      selectMode, showTitles, showBosses,
       [ "Kraid's Lair" ]);
 
-   addArea(bossSub, 'lower_norfair', selectMode, showBosses,
+   addArea('Lower Norfair', bossSub, 'lower_norfair',
+      selectMode, showTitles, showBosses,
       [ 'Ridley Mouth', '3 Musketeers' ]);
 
-   addArea(bossSub, 'wrecked_ship', selectMode, showBosses,
+   addArea('Wrecked Ship', bossSub, 'wrecked_ship',
+      selectMode, showTitles, showBosses,
       [ 'Ocean', 'WS Exit' ]);
 
-   addArea(bossSub, 'east_maridia', selectMode, showBosses,
+   addArea('East Maridia', bossSub, 'east_maridia',
+      selectMode, showTitles, showBosses,
       [ 'Aqueduct', 'Highway' ]);
 
    addSpacer(bossSub);
@@ -79,6 +88,16 @@ function addCounter(listName) {
    newCounter.id = 'master_item_counter';
    newCounter.style = 'display: none';
    masterList.appendChild(newCounter);
+}
+
+function addZoneTitle(listName, className, zoneTitle) {
+    var masterList = document.getElementById(listName);
+    var newTitle = document.createElement("div");
+
+    newTitle.classList.add(className);
+    newTitle.classList.add('zoneTitle');
+    newTitle.innerText = zoneTitle;
+    masterList.appendChild(newTitle);
 }
 
 function updateCounter() {
@@ -264,12 +283,15 @@ function addEntry(listName,className,name,mode) {
    masterList.appendChild(newPair);
 }
 
-function addArea(listName,className,mode,showBosses,portals) {
+function addArea(zoneTitle,listName,className,mode,showTitles,showBosses,portals) {
    var listObj = document.getElementById(listName);
    if (listObj.childElementCount > 0) {
       addSpacer(listName);
    }
    addDropdowns(listName,className,showBosses);
+   if (showTitles) {
+      addZoneTitle(listName,className,zoneTitle);
+   }
    portals.forEach((p) => {
       addEntry(listName,className,p,mode);
    });
