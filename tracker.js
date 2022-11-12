@@ -8,6 +8,8 @@ function initialize(body) {
       return false;
    }
 
+   updateInstructions();
+
    addDropdowns('sub1','blue_brinstar',false);
    addEntry('sub1','blue_brinstar', 'Retro PBs');
    addEntry('sub1', 'blue_brinstar', 'G4');
@@ -84,6 +86,12 @@ let getNumItems = (zone) => {
    }
 }
 
+let hasNumItems = (zone) => {
+   var zoneTotal = document.getElementById(zone+'_total');
+   let zoneValue = parseInt(zoneTotal.value);
+   return !isNaN(zoneValue);
+}
+
 function addCounter(listName) {
    var masterList = document.getElementById(listName);
    var newCounter = document.createElement("li");
@@ -98,12 +106,19 @@ function updateCounter() {
                   'crocomire','kraids_lair','lower_norfair','wrecked_ship','east_maridia'];
 
    knownItems = 0;
-   zones.forEach((i) => { knownItems += getNumItems(i)});
+   hasItems = false;
+   zones.forEach((i) => {
+      knownItems += getNumItems(i);
+      hasItems |= hasNumItems(i);
+   });
 
-   if (knownItems > 0) {
-      var theCounter = document.getElementById('master_item_counter');
+   var theCounter = document.getElementById('master_item_counter');
+
+   if (hasItems) {
       theCounter.style = '';
       theCounter.innerHTML = "Unknown:&nbsp;&nbsp;" + (itemCounter - knownItems);
+   } else {
+      theCounter.style = 'display: none';
    }
 }
 
@@ -128,6 +143,8 @@ function addDropdowns(listName,zoneName,showBoss) {
    newSelect.name = zoneName+'_total';
    newSelect.id = zoneName+'_total';
    newSelect.classList.add('total');
+   newSelect.title = 'Select the number of majors in this area ' +
+      '[useful for Full Countdown]';
 
    // Respond to changing the selected value
    newSelect.onchange = () => {
@@ -161,6 +178,8 @@ function addDropdowns(listName,zoneName,showBoss) {
    newButton.id = zoneName+'_left';
    newButton.classList.add('counter');
    newButton.style = 'display: none';
+   newButton.title = 'Number of majors remaining in area\n\n' +
+      'Left click to decrease, right click to increase';
 
    // Decrement the number on the button when left clicked
    newButton.onclick = () => {
@@ -192,6 +211,8 @@ function addDropdowns(listName,zoneName,showBoss) {
       bossSelect.name = zoneName + '_boss';
       bossSelect.id = zoneName + '_boss';
       bossSelect.classList.add('boss');
+      bossSelect.title = 'Select the boss found in this area ' +
+         '[useful for randomized bosses]';
       addOption(bossSelect,'',true);
       addOption(bossSelect,'K',false);
       addOption(bossSelect,'P',false);
@@ -286,4 +307,10 @@ function selectItem(src) {
       firstOfPair = null;
       return;
    }
+}
+
+function updateInstructions() {
+   var instDiv = document.getElementById('instructions');
+   instDiv.innerText = 'Right click to select first portal then ' +
+      'left click another portal to link them';
 }

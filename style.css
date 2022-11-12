@@ -3,6 +3,11 @@ body {
    font-family: Arial, Helvetica, sans-serif;
 }
 
+#instructions {
+   color: rgb(210,210,210);
+   font-weight: bold;
+}
+
 ul.top {
    display: flex;
    flex-wrap: wrap;
@@ -31,7 +36,7 @@ ul.portal_list {
    margin-top: 16px;
    height: 30px;
    font-size: 20px;
-   color: white;
+   color: rgb(210,210,210);
 }
 
 input.counter {
@@ -101,75 +106,6 @@ li.dropdowns {
 
 li.spacer {
    height: 2px;
-}
-
-li.set_column {
-   border-color: white;
-   width: 20px;
-   height: 20px;
-   /*border: 2px solid;*/
-   /*border-style: dotted;*/
-   border-style: solid;
-   /*border-width: thin;*/
-   padding: 1px 2px 1px 2px;
-   margin-top: 24px;
-   color: gray;
-   /*background-color: #777777;*/
-   text-align: center;
-   font-weight: bold;
-   font-size: 16px;
-   cursor: pointer;
-}
-
-.sub_button {
-   border-style: dashed;
-   border-width: thin;
-   width: 70px;
-   height: 20px;
-   padding: 4px 4px 4px 4px;
-   margin-left: 22px;
-   font-family: Arial, Helvetica, sans-serif;
-   text-align: center;
-   font-weight: bold;
-   font-size: 14px;
-   cursor: pointer;
-   -webkit-user-select: none;  
-   -moz-user-select: none;    
-   -ms-user-select: none;      
-   user-select: none;
-}
-
-.add_button {
-   border-color: green;
-   color: green;
-}
-
-.copy_button {
-   border-color: gold;
-   color: gold;
-}
-
-.drop_button {
-   border-color: red;
-   color: red;
-}
-
-li.arrow {
-   color: white;
-   font-size: 20px;
-   list-style: none;
-   text-align: center;
-   cursor: default;
-   -webkit-user-select: none;  
-   -moz-user-select: none;    
-   -ms-user-select: none;      
-   user-select: none;
-}
-
-li.top {
-   font-size: 18px;
-   width: 170px;
-   margin-top: 30px;
 }
 
 .red_brinstar {
