@@ -61,6 +61,7 @@ function initialize(body) {
       [ 'Aqueduct', 'Highway' ]);
 
    addSpacer(bossSub);
+   addSpacer(bossSub);
    addEntry(bossSub, 'tourian', 'Tourian', selectMode);
    addCounter(bossSub);
 }
@@ -121,10 +122,14 @@ function updateCounter() {
    }
 }
 
-function addDropdowns(listName,zoneName,showBoss) {
+function addDropdowns(zoneTitle,listName,zoneName,showTitles,showBoss) {
    var masterList = document.getElementById(listName);
    var newItem = document.createElement("li");
    newItem.classList.add('dropdowns');
+
+   if (showTitles) {
+      newItem.classList.add('dropdowns_with_title');
+   }
 
    let addOption = (item,option,selected) => {
       var newOption = document.createElement("option");
@@ -168,7 +173,10 @@ function addDropdowns(listName,zoneName,showBoss) {
    for (var i = 0; i < 10; i++) {
       addOption(newSelect,i,false);
    }
-   newItem.appendChild(newSelect);
+
+   var counterButtons = document.createElement("span");
+   counterButtons.classList.add('cb');
+   counterButtons.appendChild(newSelect);
 
    // Add the button to decrement the zone items left
    var newButton = document.createElement("input");
@@ -203,7 +211,15 @@ function addDropdowns(listName,zoneName,showBoss) {
          }
       }
    };
-   newItem.appendChild(newButton);
+   counterButtons.appendChild(newButton);
+   newItem.appendChild(counterButtons);
+
+   if (showTitles) {
+      var zt = document.createElement("span");
+      zt.classList.add('zt');
+      zt.innerText = zoneTitle;
+      newItem.appendChild(zt);
+   }
 
    if (showBoss) {
       var bossSelect = document.createElement("select");
@@ -259,7 +275,7 @@ function addEntry(listName,className,name,mode) {
             selectItem(newEntry);
          } else {
             firstOfPair = newEntry;
-            firstOfPair.style = "border-width: 4px; border-style: solid; border-color: blue";
+            firstOfPair.style = "outline: 4px solid blue; outline-offset: -4px";
          }
       }
    } else {
@@ -274,7 +290,7 @@ function addEntry(listName,className,name,mode) {
             }
 
             firstOfPair = newEntry;
-            firstOfPair.style = "border-width: 4px; border-style: solid; border-color: blue";
+            firstOfPair.style = "outline: 4px solid blue; outline-offset: -4px";
          }
       }
    }
@@ -288,10 +304,10 @@ function addArea(zoneTitle,listName,className,mode,showTitles,showBosses,portals
    if (listObj.childElementCount > 0) {
       addSpacer(listName);
    }
-   addDropdowns(listName,className,showBosses);
-   if (showTitles) {
+   addDropdowns(zoneTitle,listName,className,showTitles,showBosses);
+   /*if (showTitles) {
       addZoneTitle(listName,className,zoneTitle);
-   }
+   }*/
    portals.forEach((p) => {
       addEntry(listName,className,p,mode);
    });
