@@ -64,6 +64,28 @@ function initialize(body) {
    addSpacer(bossSub);
    addEntry(bossSub, 'tourian', 'Tourian', selectMode);
    addCounter(bossSub);
+
+   body.addEventListener('click', removeSelectionClick)
+   body.addEventListener('keydown', removeSelectionKey)
+}
+
+function removeSelectionClick(event) {
+   const isPortal = event.target.classList.contains('portal')
+   if (!isPortal) {
+      removeSelection()
+   }
+}
+function removeSelectionKey(event) {
+   if (event.key === 'Escape') {
+      removeSelection()
+   }
+}
+
+function removeSelection() {
+   if (firstOfPair !== null) {
+      firstOfPair.style = ''
+      firstOfPair = null;
+   }
 }
 
 let getNumItems = (zone) => {
