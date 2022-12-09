@@ -11,9 +11,7 @@ function initialize(body) {
    let selectMode = settings.select_mode;
    let showTitles = settings.show_titles == "yes";
 
-   if (settings.show_header == "yes") {
-      updateInstructions(selectMode);
-   }
+   updateInstructions(selectMode);
 
    addArea('Crateria', 'sub1', 'blue_brinstar',
       selectMode, showTitles, false,

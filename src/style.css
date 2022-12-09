@@ -11,12 +11,22 @@ body {
 #instructions > a {
    color: gold;
    font-size: 0.7em;
-   border: 0.25em;
+   border: 0.175em;
    border-style: dashed;
    margin-left: 0.5em;
    padding: 0.3em 0.4em 0.3em 0.4em;
    text-decoration: none;
    vertical-align: middle;
+}
+
+#source_link {
+   font-size: 1.2em;
+   margin-top: 1.75em;
+}
+
+#source_link > a {
+   color: green;
+   text-decoration: none;
 }
 
 ul {
@@ -59,19 +69,19 @@ input.counter {
 }
 
 #settings_title {
-   border-bottom: 0.25em;
+   border-bottom: 0.5em;
    border-bottom-style: dashed;
    border-bottom-width: 0.1em;
    font-size: 1.5em;
    margin-bottom: 0.7em;
    color: cyan;
-   width: 20%;
+   width: 16em;
 }
 
 #settings > a {
    color: gold;
    font-size: 1.1em;
-   border: 0.25em;
+   border: 0.175em;
    border-style: dashed;
    padding: 0.3em 0.4em 0.3em 0.4em;
    text-decoration: none;
@@ -80,7 +90,7 @@ input.counter {
 #settings > #restore {
    color: crimson;
    font-size: 1.1em;
-   border: 0.25em;
+   border: 0.175em;
    border-style: dashed;
    padding: 0.3em 0.4em 0.3em 0.4em;
    text-decoration: none;

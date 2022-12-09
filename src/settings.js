@@ -2,7 +2,6 @@ const appName = 'sm-area-tracker';
 const defaultSettings = {
    "select_mode" : "left",
    "show_bosses" : "yes",
-   "show_header" : "yes",
    "num_columns" : "2",
    "show_titles" : "yes"
 };
