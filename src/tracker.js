@@ -64,6 +64,28 @@ function initialize(body) {
    addSpacer(bossSub);
    addEntry(bossSub, 'tourian', 'Tourian', selectMode);
    addCounter(bossSub);
+
+   body.addEventListener('click', removeSelectionClick)
+   body.addEventListener('keydown', removeSelectionKey)
+}
+
+function removeSelectionClick(event) {
+   const isPortal = event.target.classList.contains('portal')
+   if (!isPortal) {
+      removeSelection()
+   }
+}
+function removeSelectionKey(event) {
+   if (event.key === 'Escape') {
+      removeSelection()
+   }
+}
+
+function removeSelection() {
+   if (firstOfPair !== null) {
+      firstOfPair.style = ''
+      firstOfPair = null;
+   }
 }
 
 let getNumItems = (zone) => {
@@ -323,7 +345,17 @@ function setPair(src,dst) {
 
       // Remove all portals other than the src from the parent
       while (theParent.children.length > 1) {
+         var pairedPortalName = theParent.lastChild.innerText
          theParent.removeChild(theParent.lastChild);
+         //Remove the pairing from the other side of the portal so the data stays in sync
+         var portals = document.getElementsByClassName('portal')
+         for(let i = 0;i < portals.length; i++) {
+            var portal = portals[i]
+            if (portal.innerText === pairedPortalName) {
+               var otherParent = portal.parentNode;
+               otherParent.removeChild(otherParent.lastChild)
+            }
+         }
       }
 
       // Are the src and dst the same? All done
