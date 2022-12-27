@@ -1,7 +1,8 @@
 body {
    background-color: black;
    font-family: Arial, Helvetica, sans-serif;
-   color: rgb(210,210,210);
+   color: rgb(210, 210, 210);
+   height: 100%;
 }
 
 #instructions {
@@ -98,7 +99,8 @@ input.counter {
    margin-left: 0.1em;
 }
 
-#settings > select, label {
+#settings > select,
+label {
    font-size: 1.2em;
 }
 
@@ -114,16 +116,17 @@ select.total {
 
 select.boss {
    width: 50px;
+   min-width: 50px;
    height: 30px;
-   margin-right: 8px;
    font-size: 20px;
-   float: right;
    font-weight: bold;
 }
 
 .cb {
    width: 170px;
+   min-width: 170px;
    display: inline-block;
+   height: 30px;
 }
 
 #portal_list {
@@ -133,6 +136,7 @@ select.boss {
    border-color: white;
    padding-right: 0px;
    height: 100%;
+   margin-top: -10px;
 }
 
 .portal {
@@ -150,15 +154,18 @@ select.boss {
    width: 200px;
    height: 34px;
    cursor: pointer;
-   -webkit-user-select: none;  
-   -moz-user-select: none;    
-   -ms-user-select: none;      
+   -webkit-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
    user-select: none;
 }
 
 .zt {
    font-style: italic;
    font-size: 16px;
+   display: inline-block;
+   width: -webkit-fill-available;
+   padding-top: 0.5em;
 }
 
 .zoneTitle {
@@ -174,18 +181,18 @@ select.boss {
 
 li.dropdowns {
    height: 36px;
+   margin-top: 10px;
+   display: flex;
+   padding-right: 8px;
 }
 
-li.dropdowns_with_title {
+.area_border {
    border-bottom: 0.5em;
    border-bottom-style: solid;
    border-bottom-width: 0.1em;
    margin-bottom: 0.1em;
    margin-left: 2px;
-}
-
-li.spacer {
-   height: 2px;
+   margin-right: 8px;
 }
 
 .red_brinstar {
@@ -217,7 +224,7 @@ li.spacer {
    background-color: limegreen;
 }
 
-.wrecked_ship{
+.wrecked_ship {
    background-color: yellow;
 }
 
@@ -231,9 +238,42 @@ li.spacer {
 }
 
 .tourian {
+   margin-top: 20px;
    background: red; /* For browsers that do not support gradients */
-   background: -webkit-linear-gradient(left, orange , yellow, green, cyan, blue, violet); /* For Safari 5.1 to 6.0 */
-   background: -o-linear-gradient(right, orange, yellow, green, cyan, blue, violet); /* For Opera 11.1 to 12.0 */
-   background: -moz-linear-gradient(right, orange, yellow, green, cyan, blue, violet); /* For Firefox 3.6 to 15 */
-   background: linear-gradient(to right, orange , yellow, green, cyan, blue, violet); /* Standard syntax (must be last) */
+   background: -webkit-linear-gradient(
+      left,
+      orange,
+      yellow,
+      green,
+      cyan,
+      blue,
+      violet
+   ); /* For Safari 5.1 to 6.0 */
+   background: -o-linear-gradient(
+      right,
+      orange,
+      yellow,
+      green,
+      cyan,
+      blue,
+      violet
+   ); /* For Opera 11.1 to 12.0 */
+   background: -moz-linear-gradient(
+      right,
+      orange,
+      yellow,
+      green,
+      cyan,
+      blue,
+      violet
+   ); /* For Firefox 3.6 to 15 */
+   background: linear-gradient(
+      to right,
+      orange,
+      yellow,
+      green,
+      cyan,
+      blue,
+      violet
+   ); /* Standard syntax (must be last) */
 }

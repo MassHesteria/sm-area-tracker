@@ -1,9 +1,10 @@
-const appName = 'sm-area-tracker';
+const appName = "sm-area-tracker";
 const defaultSettings = {
-   "select_mode" : "left",
-   "show_bosses" : "yes",
-   "num_columns" : "2",
-   "show_titles" : "yes"
+   select_mode: "left",
+   show_bosses: "yes",
+   show_counts: "yes",
+   num_columns: "2",
+   show_titles: "yes",
 };
 
 function loadSettings() {
@@ -13,7 +14,7 @@ function loadSettings() {
          return JSON.parse(str);
       }
    } catch (e) {
-    // do nothing
+      // do nothing
    }
    return defaultSettings;
 }

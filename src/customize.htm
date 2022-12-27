@@ -2,54 +2,63 @@
 <html>
    <head>
       <title>Customize Area Tracker</title>
-      <link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="style.css" />
       <script src="settings.js"></script>
       <script src="customize.js"></script>
    </head>
    <body onload="initialize()">
-
       <div id="settings">
+         <div id="settings_title">Customize Area Tracker</div>
 
-      <div id="settings_title">Customize Area Tracker</div>
+         <label for="select_mode">Select First Portal:</label>
+         <select name="select_mode" id="select_mode" onchange="saveChanges()">
+            <option value="right">Right Click</option>
+            <option value="left">Left Click</option>
+         </select>
 
-      <label for="select_mode">Select First Portal:</label>
-      <select name="select_mode" id="select_mode" onchange="saveChanges()">
-         <option value="right">Right Click</option>
-         <option value="left">Left Click</option>
-      </select>
+         <br /><br />
 
-      <br /><br />
+         <label for="show_bosses">Show Boss Combos:</label>
+         <select name="show_bosses" id="show_bosses" onchange="saveChanges()">
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+         </select>
 
-      <label for="show_bosses">Show Boss Combos:</label>
-      <select name="show_bosses" id="show_bosses" onchange="saveChanges()">
-         <option value="yes">Yes</option>
-         <option value="no">No</option>
-      </select>
+         <br /><br />
 
-      <br /><br />
+         <label for="show_counts">Show Countdown UI:</label>
+         <select name="show_counts" id="show_counts" onchange="saveChanges()">
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+         </select>
 
-      <label for="num_columns">Num Columns:</label>
-      <select name="num_columns" id="num_columns" onchange="saveChanges()">
-         <option value="2">2</option>
-         <option value="3">3</option>
-      </select>
+         <br /><br />
 
-      <br /><br />
+         <label for="num_columns">Num Columns:</label>
+         <select name="num_columns" id="num_columns" onchange="saveChanges()">
+            <option value="2">2</option>
+            <option value="3">3</option>
+         </select>
 
-      <label for="show_titles">Show Titles:</label>
-      <select name="show_titles" id="show_titles" onchange="saveChanges()">
-         <option value="yes">Yes</option>
-         <option value="no">No</option>
-      </select>
+         <br /><br />
 
-      <br /><br /><br />
+         <label for="show_titles">Show Titles:</label>
+         <select name="show_titles" id="show_titles" onchange="saveChanges()">
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+         </select>
 
-      <a href="index.htm">OPEN TRACKER</a>
-      <span id="restore" onclick="restoreDefaults()">RESTORE DEFAULTS</span>
+         <br /><br /><br />
 
-      <div id="source_link">
-      Source: <a href="https://github.com/masshesteria/sm-area-tracker.git">sm-area-tracker</a>
+         <a href="index.htm">OPEN TRACKER</a>
+         <span id="restore" onclick="restoreDefaults()">RESTORE DEFAULTS</span>
+
+         <div id="source_link">
+            Source:
+            <a href="https://github.com/masshesteria/sm-area-tracker.git"
+               >sm-area-tracker</a
+            >
+         </div>
       </div>
-
    </body>
 </html>
