@@ -1,7 +1,13 @@
 firstOfPair = null;
 itemCounter = 16;
 
-function initialize(body) {
+const createWithClass = (tagName, className) => {
+   let element = document.createElement(tagName);
+   element.classList.add(className);
+   return element;
+};
+
+const initialize = (body) => {
    this.oncontextmenu = function (e) {
       return false;
    };
@@ -141,12 +147,14 @@ function initialize(body) {
    );
 
    var masterList = document.getElementById(bossSub);
+   masterList.appendChild(createWithClass("div", "spacer"));
+
    addEntry(masterList, "tourian", "Tourian", selectMode);
    addCounter(bossSub);
 
    body.addEventListener("click", removeSelectionClick);
    body.addEventListener("keydown", removeSelectionKey);
-}
+};
 
 function removeSelectionClick(event) {
    const isPortal = event.target.classList.contains("portal");
@@ -232,8 +240,7 @@ function addDropdowns(
    showTitles,
    showBoss
 ) {
-   var newItem = document.createElement("li");
-   newItem.classList.add("dropdowns");
+   var newItem = createWithClass("li", "dropdowns");
 
    let addOption = (item, option, selected) => {
       var newOption = document.createElement("option");
@@ -247,10 +254,9 @@ function addDropdowns(
    };
 
    // Add the item counter for the zone
-   var newSelect = document.createElement("select");
+   var newSelect = createWithClass("select", "total");
    newSelect.name = zoneName + "_total";
    newSelect.id = zoneName + "_total";
-   newSelect.classList.add("total");
    newSelect.title =
       "Select the number of majors in this area " +
       "[useful for Full Countdown]";
@@ -279,19 +285,17 @@ function addDropdowns(
       addOption(newSelect, i, false);
    }
 
-   var counterButtons = document.createElement("div");
-   counterButtons.classList.add("cb");
+   var counterButtons = createWithClass("div", "cb");
 
    if (showCounts) {
       counterButtons.appendChild(newSelect);
    }
 
    // Add the button to decrement the zone items left
-   var newButton = document.createElement("input");
+   var newButton = createWithClass("input", "counter");
    newButton.type = "button";
    newButton.name = zoneName + "_left";
    newButton.id = zoneName + "_left";
-   newButton.classList.add("counter");
    newButton.style = "display: none";
    newButton.title =
       "Number of majors remaining in area\n\n" +
@@ -326,18 +330,16 @@ function addDropdowns(
    }
    newItem.appendChild(counterButtons);
 
-   var zt = document.createElement("div");
-   zt.classList.add("zt");
+   var zt = createWithClass("div", "zt");
    if (showTitles) {
       zt.innerText = zoneTitle;
    }
    newItem.appendChild(zt);
 
    if (showBoss) {
-      var bossSelect = document.createElement("select");
+      var bossSelect = createWithClass("select", "boss");
       bossSelect.name = zoneName + "_boss";
       bossSelect.id = zoneName + "_boss";
-      bossSelect.classList.add("boss");
       bossSelect.title =
          "Select the boss found in this area " +
          "[useful for randomized bosses]";
@@ -370,19 +372,16 @@ function addDropdowns(
    masterList.appendChild(newItem);
 
    if (showTitles) {
-      var borderItem = document.createElement("li");
-      borderItem.classList.add("area_border");
-      masterList.appendChild(borderItem);
+      masterList.appendChild(createWithClass("li", "area_border"));
    }
 }
 
 function addEntry(masterList, className, name, mode) {
    var newPair = document.createElement("li");
 
-   var newEntry = document.createElement("div");
-
+   var newEntry = createWithClass("div", "portal");
    newEntry.innerText = name;
-   newEntry.classList.add("portal", className);
+   newEntry.classList.add(className);
 
    if (mode == "left") {
       newEntry.onclick = function (e) {

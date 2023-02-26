@@ -160,6 +160,10 @@ select.boss {
    user-select: none;
 }
 
+.spacer {
+   height: 20px;
+}
+
 .zt {
    font-style: italic;
    font-size: 16px;
@@ -238,7 +242,6 @@ li.dropdowns {
 }
 
 .tourian {
-   margin-top: 20px;
    background: red; /* For browsers that do not support gradients */
    background: -webkit-linear-gradient(
       left,
