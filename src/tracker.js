@@ -17,76 +17,124 @@ const initialize = (body) => {
    let selectMode = settings.select_mode;
    let showTitles = settings.show_titles == "yes";
    let showCounts = settings.show_counts == "yes";
+   let crateriaPortal_01 = settings.crateria_portal_name_01;
+   let crateriaPortal_02 = settings.crateria_portal_name_02;
+   let crateriaPortal_03 = settings.crateria_portal_name_03;
+   let crateriaPortal_04 = settings.crateria_portal_name_04;
+   let crateriaPortal_05 = settings.crateria_portal_name_05;
+   let greenBrinPortal_01 = settings.greenBrin_portal_name_01;
+   let greenBrinPortal_02 = settings.greenBrin_portal_name_02;
+   let greenBrinPortal_03 = settings.greenBrin_portal_name_03;
+   let redBrinPortal_01 = settings.redBrin_portal_name_01;
+   let redBrinPortal_02 = settings.redBrin_portal_name_02;
+   let redBrinPortal_03 = settings.redBrin_portal_name_03;
+   let redBrinPortal_04 = settings.redBrin_portal_name_04;
+   let redBrinPortal_05 = settings.redBrin_portal_name_05;
+   let redBrinPortal_06 = settings.redBrin_portal_name_06;
+   let westMaridiaPortal_01 = settings.westMaridia_portal_name_01;
+   let westMaridiaPortal_02 = settings.westMaridia_portal_name_02;
+   let westMaridiaPortal_03 = settings.westMaridia_portal_name_03;
+   let westMaridiaPortal_04 = settings.westMaridia_portal_name_04;
+   let upperNorfairPortal_01 = settings.upperNorfair_portal_name_01;
+   let upperNorfairPortal_02 = settings.upperNorfair_portal_name_02;
+   let upperNorfairPortal_03 = settings.upperNorfair_portal_name_03;
+   let upperNorfairPortal_04 = settings.upperNorfair_portal_name_04;
+   let upperNorfairPortal_05 = settings.upperNorfair_portal_name_05;
+   let crocPortal = settings.croc_portal_name;
+   let kraidPortal = settings.kraid_portal_name;
+   let lowerNorfairPortal_01 = settings.lowerNorfair_portal_name_01;
+   let lowerNorfairPortal_02 = settings.lowerNorfair_portal_name_02;
+   let wreckedShipPortal_01 = settings.wreckedShip_portal_name_01;
+   let wreckedShipPortal_02 = settings.wreckedShip_portal_name_02;
+   let eastMaridiaPortal_01 = settings.eastMaridia_portal_name_01;
+   let eastMaridiaPortal_02 = settings.eastMaridia_portal_name_02;
+   let tourianPortal = settings.tourian_portal_name;
+
+   let crateriaColor = settings.crateriaColor;
+   let greenBrinstarColor = settings.greenBrinstarColor;
+   let redBrinstarColor = settings.redBrinstarColor;
+   let westMaridiaColor = settings.westMaridiaColor;
+   let upperNorfairColor = settings.upperNorfairColor;
+   let crocColor = settings.crocColor;
+   let kraidColor = settings.kraidColor;
+   let lowerNorfairColor = settings.lowerNorfairColor;
+   let wreckedShipColor = settings.wreckedShipColor;
+   let eastMaridiaColor = settings.eastMaridiaColor;
 
    updateInstructions(selectMode);
 
    addArea(
       "Crateria",
       "sub1",
-      "blue_brinstar",
+      "crateria",
       selectMode,
       showCounts,
       showTitles,
       false,
-      ["Retro PBs", "G4", "Kago", "Crab", "Moat"]
+      [crateriaPortal_01, crateriaPortal_02, crateriaPortal_03, crateriaPortal_04, crateriaPortal_05],
+      crateriaColor
    );
 
    addArea(
       "Green Brinstar",
       "sub1",
-      "green_hills",
+      "greenBrinstar",
       selectMode,
       showCounts,
       showTitles,
       false,
-      ["Green Elevator", "Green Hills", "Noob Bridge"]
+      [greenBrinPortal_01, greenBrinPortal_02, greenBrinPortal_03],
+      greenBrinstarColor
    );
 
    let redBrinSub = settings.num_columns == 3 ? "sub2" : "sub1";
    addArea(
       "Red Brinstar",
       redBrinSub,
-      "red_brinstar",
+      "redBrinstar",
       selectMode,
       showCounts,
       showTitles,
       false,
       [
-         "Red Elevator",
-         "Maridia Escape",
-         "Red Tower",
-         "Tube",
-         "Above Kraid",
-         "Kraid Entry",
-      ]
+         redBrinPortal_01,
+         redBrinPortal_02,
+         redBrinPortal_03,
+         redBrinPortal_04,
+         redBrinPortal_05,
+         redBrinPortal_06,
+      ],
+      redBrinstarColor,
    );
 
    addArea(
       "West Maridia",
       "sub1",
-      "west_maridia",
+      "westMaridia",
       selectMode,
       showCounts,
       showTitles,
       false,
-      ["Red Fish", "PreAqueduct", "Main Street", "Map Station"]
+      [westMaridiaPortal_01, westMaridiaPortal_02, westMaridiaPortal_03, westMaridiaPortal_04],
+      westMaridiaColor
    );
 
    addArea(
       "Upper Norfair",
       "sub2",
-      "upper_norfair",
+      "upperNorfair",
       selectMode,
       showCounts,
       showTitles,
       false,
       [
-         "Elevator Entry",
-         "Kraid Mouth",
-         "Croc Entry",
-         "Single Chamber",
-         "Lava Dive",
-      ]
+         upperNorfairPortal_01,
+         upperNorfairPortal_02,
+         upperNorfairPortal_03,
+         upperNorfairPortal_04,
+         upperNorfairPortal_05,
+      ],
+      upperNorfairColor
    );
 
    addArea(
@@ -97,7 +145,8 @@ const initialize = (body) => {
       showCounts,
       showTitles,
       false,
-      ["Croc Exit"]
+      [crocPortal],
+      crocColor
    );
 
    let bossSub = settings.num_columns == 3 ? "sub3" : "sub2";
@@ -105,51 +154,55 @@ const initialize = (body) => {
    addArea(
       "Kraid's Lair",
       bossSub,
-      "kraids_lair",
+      "kraidsLair",
       selectMode,
       showCounts,
       showTitles,
       showBosses,
-      ["Kraid's Lair"]
+      [kraidPortal],
+      kraidColor
    );
 
    addArea(
       "Lower Norfair",
       bossSub,
-      "lower_norfair",
+      "lowerNorfair",
       selectMode,
       showCounts,
       showTitles,
       showBosses,
-      ["Ridley Mouth", "3 Musketeers"]
+      [lowerNorfairPortal_01, lowerNorfairPortal_02],
+      lowerNorfairColor
    );
 
    addArea(
       "Wrecked Ship",
       bossSub,
-      "wrecked_ship",
+      "wreckedShip",
       selectMode,
       showCounts,
       showTitles,
       showBosses,
-      ["Ocean", "WS Exit"]
+      [wreckedShipPortal_01, wreckedShipPortal_02],
+      wreckedShipColor
    );
 
    addArea(
       "East Maridia",
       bossSub,
-      "east_maridia",
+      "eastMaridia",
       selectMode,
       showCounts,
       showTitles,
       showBosses,
-      ["Aqueduct", "Highway"]
+      [eastMaridiaPortal_01, eastMaridiaPortal_02],
+      eastMaridiaColor
    );
 
    var masterList = document.getElementById(bossSub);
    masterList.appendChild(createWithClass("div", "spacer"));
 
-   addEntry(masterList, "tourian", "Tourian", selectMode);
+   addEntry(masterList, "tourian", tourianPortal, selectMode);
    addCounter(bossSub);
 
    body.addEventListener("click", removeSelectionClick);
@@ -202,16 +255,16 @@ function addCounter(listName) {
 
 function updateCounter() {
    const zones = [
-      "blue_brinstar",
-      "green_hills",
-      "red_brinstar",
-      "west_maridia",
-      "upper_norfair",
+      "crateria",
+      "greenBrinstar",
+      "redBrinstar",
+      "westMaridia",
+      "upperNorfair",
       "crocomire",
-      "kraids_lair",
-      "lower_norfair",
-      "wrecked_ship",
-      "east_maridia",
+      "kraidsLair",
+      "lowerNorfair",
+      "wreckedShip",
+      "eastMaridia",
    ];
 
    knownItems = 0;
@@ -238,7 +291,7 @@ function addDropdowns(
    zoneName,
    showCounts,
    showTitles,
-   showBoss
+   showBoss,
 ) {
    var newItem = createWithClass("li", "dropdowns");
 
@@ -420,7 +473,8 @@ function addArea(
    showCounts,
    showTitles,
    showBosses,
-   portals
+   portals,
+   zoneColor
 ) {
    var listObj = document.getElementById(listName);
 
@@ -433,7 +487,7 @@ function addArea(
       showBosses
    );
    portals.forEach((p) => {
-      addEntry(listObj, className, p, mode);
+      addEntry(listObj, zoneColor, p, mode);
    });
 }
 
@@ -481,6 +535,7 @@ function selectItem(src) {
       return;
    }
 }
+
 
 function updateInstructions(mode) {
    let first = mode == "left" ? "Left" : "Right";
