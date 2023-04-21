@@ -172,6 +172,22 @@ select.boss {
    padding-top: 0.5em;
 }
 
+.customize {
+   font-style: italic;
+   font-size: 24px;
+   display: inline-block;
+   width: fit-content;
+   padding-top: 0.5em;
+   cursor: pointer;
+}
+
+.customize_title {
+   font-style: italic;
+   font-size: 24px;
+   cursor: pointer;
+   width: fit-content;
+}
+
 .zoneTitle {
    color: black;
    margin-left: 2px;
@@ -199,6 +215,116 @@ li.dropdowns {
    margin-right: 8px;
 }
 
+.select_color_picker {
+	font-size: 12px;
+	font-family: sans-serif;
+	font-weight: 700;
+   text-align: center;
+	color: black;
+	line-height: 1.5;
+	padding: .3em 0em .3em 0em;
+	width: 110px;
+	max-width: 100%;
+	box-sizing: border-box;
+	margin: 0;
+	border: 3px solid #aaa;
+	border-radius: .5em;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+}
+
+
+.red {
+   background-color: red;
+}
+
+.crimson {
+   background-color: crimson;
+}
+
+.orangered {
+   background-color: orangered;
+}
+
+.orange {
+   background-color: orange;
+}
+
+.salmon {
+   background-color: salmon;
+}
+
+.yellow {
+   background-color: yellow;
+}
+
+.goldenrod {
+   background-color: goldenrod;
+}
+
+.limegreen {
+   background-color: limegreen;
+}
+
+.green {
+   background-color: green;
+   color: #e5e5e5;
+}
+
+.olive {
+   background-color: olive;
+   color: #e5e5e5;
+}
+
+.blue {
+   background-color: blue;
+   color: #e5e5e5;
+}
+
+.darkcyan {
+   background-color: darkcyan;
+   color: #e5e5e5;
+}
+
+.cyan {
+   background-color: cyan;
+}
+
+.indigo {
+   background-color: indigo;
+   color: #e5e5e5;
+}
+
+.darkorchid {
+   background-color: darkorchid;
+   color: #e5e5e5;
+}
+
+.violet {
+   background-color: violet;
+}
+
+.pink {
+   background-color: pink;
+}
+
+.grey {
+   background-color: grey;
+   color: #e5e5e5;
+}
+
+.brown {
+   background-color: brown;
+   color: #e5e5e5;
+}
+
+.white {
+   background-color: white;
+}
+
+
+/*
 .red_brinstar {
    background-color: rgb(255, 130, 130);
 }
@@ -240,6 +366,7 @@ li.dropdowns {
    background-color: rgb(138, 42, 138);
    color: #e5e5e5;
 }
+*/
 
 .tourian {
    background: red; /* For browsers that do not support gradients */
