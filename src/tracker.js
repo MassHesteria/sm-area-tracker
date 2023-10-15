@@ -15,7 +15,7 @@ const initialize = (body) => {
    let showBosses = settings.show_bosses == "yes";
    let selectMode = settings.select_mode;
    let showTitles = settings.show_titles == "yes";
-   let showCounts = settings.show_counts == "yes";
+   let showCounts = settings.show_counts;
    let crateriaPortal_01 = settings.crateria_portal_name_01;
    let crateriaPortal_02 = settings.crateria_portal_name_02;
    let crateriaPortal_03 = settings.crateria_portal_name_03;
@@ -222,20 +222,14 @@ function removeSelection() {
    }
 }
 
-let getNumItems = (zone) => {
-   var zoneTotal = document.getElementById(zone + "_total");
-   let zoneValue = parseInt(zoneTotal.value);
+let getNumItems = (zone, type) => {
+   const zoneTotal = document.getElementById(`${zone}_${type}_total`);
+   const zoneValue = parseInt(zoneTotal.value);
    if (isNaN(zoneValue)) {
       return 0;
    } else {
       return zoneValue;
    }
-};
-
-let hasNumItems = (zone) => {
-   var zoneTotal = document.getElementById(zone + "_total");
-   let zoneValue = parseInt(zoneTotal.value);
-   return !isNaN(zoneValue);
 };
 
 function addCounter(listName) {
@@ -263,7 +257,7 @@ function updateCounter() {
 
    knownItems = 0;
    zones.forEach((i) => {
-      knownItems += getNumItems(i);
+      knownItems += getNumItems(i, "major");
    });
 
    const settings = loadSettings();
@@ -280,7 +274,7 @@ function addDropdowns(
    showTitles,
    showBoss
 ) {
-   var newItem = createWithClass("li", "dropdowns");
+   let newItem = createWithClass("li", "dropdowns");
 
    let addOption = (item, option, selected) => {
       var newOption = document.createElement("option");
@@ -293,85 +287,112 @@ function addDropdowns(
       item.appendChild(newOption);
    };
 
-   // Add the item counter for the zone
-   var newSelect = createWithClass("select", "total");
-   newSelect.name = zoneName + "_total";
-   newSelect.id = zoneName + "_total";
-   newSelect.title =
-      "Select the number of majors in this area " +
-      "[useful for Full Countdown]";
+   let createSelect = (type) => {
+      // Generate the names for the new elements
+      const zone_left = `${zoneName}_${type}_left`;
+      const zone_total = `${zoneName}_${type}_total`;
 
-   // Respond to changing the selected value
-   newSelect.onchange = () => {
-      updateCounter();
+      // Add the item counter for the zone
+      let newSelect = createWithClass("select", "total");
+      newSelect.name = zone_total;
+      newSelect.id = zone_total;
+      newSelect.title =
+         "Select the number of majors in this area " +
+         "[useful for Full Countdown]";
 
-      var zoneItems = getNumItems(zoneName);
-      var zoneButton = document.getElementById(zoneName + "_left");
-      var zoneTotal = document.getElementById(zoneName + "_total");
-      if (zoneItems > 0) {
-         zoneButton.style = "";
-         zoneButton.value = zoneItems;
-         zoneButton.innerHtml = zoneItems;
-         zoneTotal.style = "opacity: 60%";
-      } else {
-         zoneButton.style = "display: none";
-         zoneTotal.style = "opacity: 100%";
-      }
-   };
+      // Respond to changing the selected value
+      newSelect.onchange = () => {
+         updateCounter();
+
+         var zoneItems = getNumItems(zoneName, type);
+         var zoneButton = document.getElementById(zone_left);
+         var zoneTotal = document.getElementById(zone_total);
+         if (zoneItems > 0) {
+            zoneButton.style = "";
+            zoneButton.value = zoneItems;
+            zoneButton.innerHtml = zoneItems;
+            zoneTotal.style = "opacity: 60%";
+         } else {
+            zoneButton.style = "display: none";
+            zoneTotal.style = "opacity: 100%";
+         }
+      };
+      return newSelect;
+   }
 
    // Add options to the dropdown
-   addOption(newSelect, "", true);
+   const majorSelect = createSelect("major");
+   addOption(majorSelect, "", true);
    for (var i = 0; i < 10; i++) {
-      addOption(newSelect, i, false);
+      addOption(majorSelect, i, false);
    }
 
-   var counterButtons = createWithClass("div", "cb");
-
-   if (showCounts) {
-      counterButtons.appendChild(newSelect);
+   let counterButtons = createWithClass("div", "cb");
+   if (showCounts != "none") {
+      counterButtons.appendChild(majorSelect);
    }
 
-   // Add the button to decrement the zone items left
-   var newButton = createWithClass("input", "counter");
-   newButton.type = "button";
-   newButton.name = zoneName + "_left";
-   newButton.id = zoneName + "_left";
-   newButton.style = "display: none";
-   newButton.title =
-      "Number of majors remaining in area\n\n" +
-      "Left click to decrease, right click to increase";
+   // Add options to the dropdown
+   const tankSelect = createSelect("tank");
+   addOption(tankSelect, "", true);
+   for (var i = 0; i < 10; i++) {
+      addOption(tankSelect, i, false);
+   }
 
-   // Decrement the number on the button when left clicked
-   newButton.onclick = () => {
-      var zoneButton = document.getElementById(zoneName + "_left");
-      var btnValue = parseInt(zoneButton.value);
+   let tankButtons = createWithClass("div", "cb");
+   if (showCounts == "both") {
+      tankButtons.appendChild(tankSelect);
+   }
 
-      if (btnValue > 0) {
-         zoneButton.value = btnValue - 1;
-         zoneButton.innerHtml = btnValue - 1;
-      }
-   };
+   const createButton = (type) => {
+      const zone_left = `${zoneName}_${type}_left`;
+      // Add the button to decrement the zone items left
+      var newButton = createWithClass("input", "counter");
+      newButton.type = "button";
+      newButton.name = zone_left;
+      newButton.id = zone_left;
+      newButton.style = "display: none";
+      newButton.title =
+         "Number of majors remaining in area\n\n" +
+         "Left click to decrease, right click to increase";
 
-   // Increment the number on the button when right clicked
-   newButton.onauxclick = (e) => {
-      if (e.button == 2) {
-         var zoneButton = document.getElementById(zoneName + "_left");
+      // Decrement the number on the button when left clicked
+      newButton.onclick = () => {
+         var zoneButton = document.getElementById(zone_left);
          var btnValue = parseInt(zoneButton.value);
-         var zoneItems = getNumItems(zoneName);
-         if (btnValue < zoneItems) {
-            zoneButton.value = btnValue + 1;
-            zoneButton.innerHtml = btnValue + 1;
-         }
-      }
-   };
 
-   if (showCounts) {
-      counterButtons.appendChild(newButton);
+         if (btnValue > 0) {
+            zoneButton.value = btnValue - 1;
+            zoneButton.innerHtml = btnValue - 1;
+         }
+      };
+
+      // Increment the number on the button when right clicked
+      newButton.onauxclick = (e) => {
+         if (e.button == 2) {
+            var zoneButton = document.getElementById(zone_left);
+            var btnValue = parseInt(zoneButton.value);
+            var zoneItems = getNumItems(zoneName, type);
+            if (btnValue < zoneItems) {
+               zoneButton.value = btnValue + 1;
+               zoneButton.innerHtml = btnValue + 1;
+            }
+         }
+      };
+      return newButton;
+   }
+
+   if (showCounts != "none") {
+      counterButtons.appendChild(createButton("major"));
+   }
+   if (showCounts == "both") {
+      tankButtons.appendChild(createButton("tank"));
    }
    newItem.appendChild(counterButtons);
+   newItem.appendChild(tankButtons);
 
    var zt = createWithClass("div", "zt");
-   if (showTitles) {
+   if (showTitles && showCounts != "both") {
       zt.innerText = zoneTitle;
    }
    newItem.appendChild(zt);
