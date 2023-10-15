@@ -50,16 +50,28 @@ const initialize = (body) => {
    let eastMaridiaPortal_02 = settings.eastMaridia_portal_name_02;
    let tourianPortal = settings.tourian_portal_name;
 
-   let crateriaColor = settings.crateriaColor;
-   let greenBrinstarColor = settings.greenBrinstarColor;
-   let redBrinstarColor = settings.redBrinstarColor;
-   let westMaridiaColor = settings.westMaridiaColor;
-   let upperNorfairColor = settings.upperNorfairColor;
-   let crocColor = settings.crocColor;
-   let kraidColor = settings.kraidColor;
-   let lowerNorfairColor = settings.lowerNorfairColor;
-   let wreckedShipColor = settings.wreckedShipColor;
-   let eastMaridiaColor = settings.eastMaridiaColor;
+   const addArea = (
+      zoneTitle,
+      listName,
+      className,
+      showBosses,
+      portals,
+      zoneColor
+   ) => {
+      var listObj = document.getElementById(listName);
+
+      addDropdowns(
+         zoneTitle,
+         listObj,
+         className,
+         showCounts,
+         showTitles,
+         showBosses
+      );
+      portals.forEach((p) => {
+         addEntry(listObj, zoneColor, p, selectMode);
+      });
+   };
 
    updateInstructions(selectMode);
 
@@ -67,24 +79,24 @@ const initialize = (body) => {
       "Crateria",
       "sub1",
       "crateria",
-      selectMode,
-      showCounts,
-      showTitles,
       false,
-      [crateriaPortal_01, crateriaPortal_02, crateriaPortal_03, crateriaPortal_04, crateriaPortal_05],
-      crateriaColor
+      [
+         crateriaPortal_01,
+         crateriaPortal_02,
+         crateriaPortal_03,
+         crateriaPortal_04,
+         crateriaPortal_05,
+      ],
+      settings.crateriaColor
    );
 
    addArea(
       "Green Brinstar",
       "sub1",
       "greenBrinstar",
-      selectMode,
-      showCounts,
-      showTitles,
       false,
       [greenBrinPortal_01, greenBrinPortal_02, greenBrinPortal_03],
-      greenBrinstarColor
+      settings.greenBrinstarColor
    );
 
    let redBrinSub = settings.num_columns == 3 ? "sub2" : "sub1";
@@ -92,9 +104,6 @@ const initialize = (body) => {
       "Red Brinstar",
       redBrinSub,
       "redBrinstar",
-      selectMode,
-      showCounts,
-      showTitles,
       false,
       [
          redBrinPortal_01,
@@ -104,28 +113,27 @@ const initialize = (body) => {
          redBrinPortal_05,
          redBrinPortal_06,
       ],
-      redBrinstarColor,
+      settings.redBrinstarColor
    );
 
    addArea(
       "West Maridia",
       "sub1",
       "westMaridia",
-      selectMode,
-      showCounts,
-      showTitles,
       false,
-      [westMaridiaPortal_01, westMaridiaPortal_02, westMaridiaPortal_03, westMaridiaPortal_04],
-      westMaridiaColor
+      [
+         westMaridiaPortal_01,
+         westMaridiaPortal_02,
+         westMaridiaPortal_03,
+         westMaridiaPortal_04,
+      ],
+      settings.westMaridiaColor
    );
 
    addArea(
       "Upper Norfair",
       "sub2",
       "upperNorfair",
-      selectMode,
-      showCounts,
-      showTitles,
       false,
       [
          upperNorfairPortal_01,
@@ -134,69 +142,54 @@ const initialize = (body) => {
          upperNorfairPortal_04,
          upperNorfairPortal_05,
       ],
-      upperNorfairColor
+      settings.upperNorfairColor
    );
 
    addArea(
       "Crocomire",
       "sub2",
       "crocomire",
-      selectMode,
-      showCounts,
-      showTitles,
       false,
       [crocPortal],
-      crocColor
+      settings.crocColor
    );
 
-   let bossSub = settings.num_columns == 3 ? "sub3" : "sub2";
+   const bossSub = settings.num_columns == 3 ? "sub3" : "sub2";
 
    addArea(
       "Kraid's Lair",
       bossSub,
       "kraidsLair",
-      selectMode,
-      showCounts,
-      showTitles,
       showBosses,
       [kraidPortal],
-      kraidColor
+      settings.kraidColor
    );
 
    addArea(
       "Lower Norfair",
       bossSub,
       "lowerNorfair",
-      selectMode,
-      showCounts,
-      showTitles,
       showBosses,
       [lowerNorfairPortal_01, lowerNorfairPortal_02],
-      lowerNorfairColor
+      settings.lowerNorfairColor
    );
 
    addArea(
       "Wrecked Ship",
       bossSub,
       "wreckedShip",
-      selectMode,
-      showCounts,
-      showTitles,
       showBosses,
       [wreckedShipPortal_01, wreckedShipPortal_02],
-      wreckedShipColor
+      settings.wreckedShipColor
    );
 
    addArea(
       "East Maridia",
       bossSub,
       "eastMaridia",
-      selectMode,
-      showCounts,
-      showTitles,
       showBosses,
       [eastMaridiaPortal_01, eastMaridiaPortal_02],
-      eastMaridiaColor
+      settings.eastMaridiaColor
    );
 
    var masterList = document.getElementById(bossSub);
@@ -291,7 +284,7 @@ function addDropdowns(
    zoneName,
    showCounts,
    showTitles,
-   showBoss,
+   showBoss
 ) {
    var newItem = createWithClass("li", "dropdowns");
 
@@ -465,32 +458,6 @@ function addEntry(masterList, className, name, mode) {
    masterList.appendChild(newPair);
 }
 
-function addArea(
-   zoneTitle,
-   listName,
-   className,
-   mode,
-   showCounts,
-   showTitles,
-   showBosses,
-   portals,
-   zoneColor
-) {
-   var listObj = document.getElementById(listName);
-
-   addDropdowns(
-      zoneTitle,
-      listObj,
-      className,
-      showCounts,
-      showTitles,
-      showBosses
-   );
-   portals.forEach((p) => {
-      addEntry(listObj, zoneColor, p, mode);
-   });
-}
-
 function setPair(src, dst) {
    // Grab the parent list item of the src portal
    var theParent = src.parentNode;
@@ -536,15 +503,11 @@ function selectItem(src) {
    }
 }
 
-
 function updateInstructions(mode) {
-   let first = mode == "left" ? "Left" : "Right";
-   let second = mode == "left" ? "right" : "left";
-
-   var instDiv = document.getElementById("instructions");
+   let instDiv = document.getElementById("instructions");
    instDiv.innerHTML =
       "<u>" +
-      first +
+      (mode == "left" ? "Left" : "Right") +
       " click</u> to select first portal " +
       "<u>then left click</u> another portal to link them " +
       '<a href="customize.htm">CUSTOMIZE</a>';

@@ -158,6 +158,7 @@ select.boss {
    -moz-user-select: none;
    -ms-user-select: none;
    user-select: none;
+   border-radius: 6px;
 }
 
 .spacer {
