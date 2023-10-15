@@ -42,6 +42,16 @@
 
          <br /><br />
 
+         <label for="num_majors">Num Majors:</label>
+         <select name="num_majors" id="num_majors" onchange="saveChanges()">
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+         </select>
+
+         <br /><br />
+
          <label for="show_titles">Show Titles:</label>
          <select name="show_titles" id="show_titles" onchange="saveChanges()">
             <option value="yes">Yes</option>
@@ -52,7 +62,7 @@
 
          <details>
             <summary class="customize_title">
-               <label for="portal_names"><u>Customize Portals</u></label>
+               <u>Customize Portals</u>
             </summary>
             <details>
                <summary class="customize"><u>Crateria</u></summary>

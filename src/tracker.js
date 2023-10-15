@@ -1,5 +1,4 @@
 firstOfPair = null;
-itemCounter = 16;
 
 const createWithClass = (tagName, className) => {
    let element = document.createElement(tagName);
@@ -200,6 +199,8 @@ const initialize = (body) => {
 
    body.addEventListener("click", removeSelectionClick);
    body.addEventListener("keydown", removeSelectionKey);
+
+   updateCounter();
 };
 
 function removeSelectionClick(event) {
@@ -261,21 +262,14 @@ function updateCounter() {
    ];
 
    knownItems = 0;
-   hasItems = false;
    zones.forEach((i) => {
       knownItems += getNumItems(i);
-      hasItems |= hasNumItems(i);
    });
 
-   var theCounter = document.getElementById("master_item_counter");
-
-   if (hasItems) {
-      theCounter.style = "";
-      theCounter.innerHTML =
-         "Unknown:&nbsp;&nbsp;" + (itemCounter - knownItems);
-   } else {
-      theCounter.style = "display: none";
-   }
+   const settings = loadSettings();
+   const theCounter = document.getElementById("master_item_counter");
+   theCounter.style = "";
+   theCounter.innerHTML = `Items: ${settings.num_majors - knownItems}`;
 }
 
 function addDropdowns(

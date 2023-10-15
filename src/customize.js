@@ -3,6 +3,7 @@ const inputValues = [
    "show_bosses",
    "show_counts",
    "num_columns",
+   "num_majors",
    "show_titles",
    "crateria_portal_name_01",
    "crateria_portal_name_02",

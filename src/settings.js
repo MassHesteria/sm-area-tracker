@@ -4,6 +4,7 @@ const defaultSettings = {
    show_bosses: "yes",
    show_counts: "yes",
    num_columns: "2",
+   num_majors: "16",
    show_titles: "yes",
    crateria_portal_name_01: "Retro PBs",
    crateria_portal_name_02: "G4",
@@ -47,7 +48,6 @@ const defaultSettings = {
    lowerNorfairColor: "white",
    wreckedShipColor: "yellow",
    eastMaridiaColor: "indigo",
-
 };
 
 function loadSettings() {
