@@ -377,6 +377,7 @@ function addDropdowns(
    newItem.appendChild(zt);
 
    if (showBoss) {
+      const settings = loadSettings();
       var bossSelect = createWithClass("select", "boss");
       bossSelect.name = zoneName + "_boss";
       bossSelect.id = zoneName + "_boss";
@@ -391,19 +392,19 @@ function addDropdowns(
 
       bossSelect.onchange = (e) => {
          e.target.classList.remove(
-            "wrecked_ship",
-            "east_maridia",
-            "kraids_lair",
-            "lower_norfair"
+            settings.wreckedShipColor,
+            settings.eastMaridiaColor,
+            settings.kraidColor,
+            settings.lowerNorfairColor
          );
          if (e.target.value == "K") {
-            e.target.classList.add("kraids_lair");
+            e.target.classList.add(settings.kraidColor);
          } else if (e.target.value == "P") {
-            e.target.classList.add("wrecked_ship");
+            e.target.classList.add(settings.wreckedShipColor);
          } else if (e.target.value == "D") {
-            e.target.classList.add("east_maridia");
+            e.target.classList.add(settings.eastMaridiaColor);
          } else if (e.target.value == "R") {
-            e.target.classList.add("lower_norfair");
+            e.target.classList.add(settings.lowerNorfairColor);
          }
       };
       newItem.appendChild(bossSelect);
