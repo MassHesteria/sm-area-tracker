@@ -16,38 +16,6 @@ const initialize = (body) => {
    let selectMode = settings.select_mode;
    let showTitles = settings.show_titles == "yes";
    let showCounts = settings.show_counts;
-   let crateriaPortal_01 = settings.crateria_portal_name_01;
-   let crateriaPortal_02 = settings.crateria_portal_name_02;
-   let crateriaPortal_03 = settings.crateria_portal_name_03;
-   let crateriaPortal_04 = settings.crateria_portal_name_04;
-   let crateriaPortal_05 = settings.crateria_portal_name_05;
-   let greenBrinPortal_01 = settings.greenBrin_portal_name_01;
-   let greenBrinPortal_02 = settings.greenBrin_portal_name_02;
-   let greenBrinPortal_03 = settings.greenBrin_portal_name_03;
-   let redBrinPortal_01 = settings.redBrin_portal_name_01;
-   let redBrinPortal_02 = settings.redBrin_portal_name_02;
-   let redBrinPortal_03 = settings.redBrin_portal_name_03;
-   let redBrinPortal_04 = settings.redBrin_portal_name_04;
-   let redBrinPortal_05 = settings.redBrin_portal_name_05;
-   let redBrinPortal_06 = settings.redBrin_portal_name_06;
-   let westMaridiaPortal_01 = settings.westMaridia_portal_name_01;
-   let westMaridiaPortal_02 = settings.westMaridia_portal_name_02;
-   let westMaridiaPortal_03 = settings.westMaridia_portal_name_03;
-   let westMaridiaPortal_04 = settings.westMaridia_portal_name_04;
-   let upperNorfairPortal_01 = settings.upperNorfair_portal_name_01;
-   let upperNorfairPortal_02 = settings.upperNorfair_portal_name_02;
-   let upperNorfairPortal_03 = settings.upperNorfair_portal_name_03;
-   let upperNorfairPortal_04 = settings.upperNorfair_portal_name_04;
-   let upperNorfairPortal_05 = settings.upperNorfair_portal_name_05;
-   let crocPortal = settings.croc_portal_name;
-   let kraidPortal = settings.kraid_portal_name;
-   let lowerNorfairPortal_01 = settings.lowerNorfair_portal_name_01;
-   let lowerNorfairPortal_02 = settings.lowerNorfair_portal_name_02;
-   let wreckedShipPortal_01 = settings.wreckedShip_portal_name_01;
-   let wreckedShipPortal_02 = settings.wreckedShip_portal_name_02;
-   let eastMaridiaPortal_01 = settings.eastMaridia_portal_name_01;
-   let eastMaridiaPortal_02 = settings.eastMaridia_portal_name_02;
-   let tourianPortal = settings.tourian_portal_name;
 
    const addArea = (
       zoneTitle,
@@ -57,7 +25,7 @@ const initialize = (body) => {
       portals,
       zoneColor
    ) => {
-      var listObj = document.getElementById(listName);
+      let listObj = document.getElementById(listName);
 
       addDropdowns(
          zoneTitle,
@@ -80,11 +48,11 @@ const initialize = (body) => {
       "crateria",
       false,
       [
-         crateriaPortal_01,
-         crateriaPortal_02,
-         crateriaPortal_03,
-         crateriaPortal_04,
-         crateriaPortal_05,
+         settings.crateria_portal_name_01,
+         settings.crateria_portal_name_02,
+         settings.crateria_portal_name_03,
+         settings.crateria_portal_name_04,
+         settings.crateria_portal_name_05
       ],
       settings.crateriaColor
    );
@@ -94,7 +62,11 @@ const initialize = (body) => {
       "sub1",
       "greenBrinstar",
       false,
-      [greenBrinPortal_01, greenBrinPortal_02, greenBrinPortal_03],
+      [
+         settings.greenBrin_portal_name_01,
+         settings.greenBrin_portal_name_02,
+         settings.greenBrin_portal_name_03
+      ],
       settings.greenBrinstarColor
    );
 
@@ -105,12 +77,12 @@ const initialize = (body) => {
       "redBrinstar",
       false,
       [
-         redBrinPortal_01,
-         redBrinPortal_02,
-         redBrinPortal_03,
-         redBrinPortal_04,
-         redBrinPortal_05,
-         redBrinPortal_06,
+         settings.redBrin_portal_name_01,
+         settings.redBrin_portal_name_02,
+         settings.redBrin_portal_name_03,
+         settings.redBrin_portal_name_04,
+         settings.redBrin_portal_name_05,
+         settings.redBrin_portal_name_06
       ],
       settings.redBrinstarColor
    );
@@ -121,10 +93,10 @@ const initialize = (body) => {
       "westMaridia",
       false,
       [
-         westMaridiaPortal_01,
-         westMaridiaPortal_02,
-         westMaridiaPortal_03,
-         westMaridiaPortal_04,
+         settings.westMaridia_portal_name_01,
+         settings.westMaridia_portal_name_02,
+         settings.westMaridia_portal_name_03,
+         settings.westMaridia_portal_name_04
       ],
       settings.westMaridiaColor
    );
@@ -135,11 +107,11 @@ const initialize = (body) => {
       "upperNorfair",
       false,
       [
-         upperNorfairPortal_01,
-         upperNorfairPortal_02,
-         upperNorfairPortal_03,
-         upperNorfairPortal_04,
-         upperNorfairPortal_05,
+         settings.upperNorfair_portal_name_01,
+         settings.upperNorfair_portal_name_02,
+         settings.upperNorfair_portal_name_03,
+         settings.upperNorfair_portal_name_04,
+         settings.upperNorfair_portal_name_05
       ],
       settings.upperNorfairColor
    );
@@ -149,7 +121,7 @@ const initialize = (body) => {
       "sub2",
       "crocomire",
       false,
-      [crocPortal],
+      [settings.croc_portal_name],
       settings.crocColor
    );
 
@@ -160,7 +132,7 @@ const initialize = (body) => {
       bossSub,
       "kraidsLair",
       showBosses,
-      [kraidPortal],
+      [settings.kraid_portal_name],
       settings.kraidColor
    );
 
@@ -169,7 +141,10 @@ const initialize = (body) => {
       bossSub,
       "lowerNorfair",
       showBosses,
-      [lowerNorfairPortal_01, lowerNorfairPortal_02],
+      [
+         settings.lowerNorfair_portal_name_01,
+         settings.lowerNorfair_portal_name_02
+      ],
       settings.lowerNorfairColor
    );
 
@@ -178,7 +153,10 @@ const initialize = (body) => {
       bossSub,
       "wreckedShip",
       showBosses,
-      [wreckedShipPortal_01, wreckedShipPortal_02],
+      [
+         settings.wreckedShip_portal_name_01,
+         settings.wreckedShip_portal_name_02
+      ],
       settings.wreckedShipColor
    );
 
@@ -187,14 +165,17 @@ const initialize = (body) => {
       bossSub,
       "eastMaridia",
       showBosses,
-      [eastMaridiaPortal_01, eastMaridiaPortal_02],
+      [
+         settings.eastMaridia_portal_name_01,
+         settings.eastMaridia_portal_name_02
+      ],
       settings.eastMaridiaColor
    );
 
-   var masterList = document.getElementById(bossSub);
+   let masterList = document.getElementById(bossSub);
    masterList.appendChild(createWithClass("div", "spacer"));
 
-   addEntry(masterList, "tourian", tourianPortal, selectMode);
+   addEntry(masterList, "tourian", settings.tourian_portal_name, selectMode);
    addCounter(bossSub);
 
    body.addEventListener("click", removeSelectionClick);
@@ -233,8 +214,8 @@ let getNumItems = (zone, type) => {
 };
 
 function addCounter(listName) {
-   var masterList = document.getElementById(listName);
-   var newCounter = document.createElement("li");
+   let masterList = document.getElementById(listName);
+   let newCounter = document.createElement("li");
 
    newCounter.id = "master_item_counter";
    newCounter.style = "display: none";
@@ -277,7 +258,7 @@ function addDropdowns(
    let newItem = createWithClass("li", "dropdowns");
 
    let addOption = (item, option, selected) => {
-      var newOption = document.createElement("option");
+      let newOption = document.createElement("option");
       newOption.value = option;
       newOption.innerText = option;
 
@@ -304,9 +285,9 @@ function addDropdowns(
       newSelect.onchange = () => {
          updateCounter();
 
-         var zoneItems = getNumItems(zoneName, type);
-         var zoneButton = document.getElementById(zone_left);
-         var zoneTotal = document.getElementById(zone_total);
+         let zoneItems = getNumItems(zoneName, type);
+         let zoneButton = document.getElementById(zone_left);
+         let zoneTotal = document.getElementById(zone_total);
          if (zoneItems > 0) {
             zoneButton.style = "";
             zoneButton.value = zoneItems;
@@ -319,7 +300,7 @@ function addDropdowns(
       };
 
       addOption(newSelect, "", true);
-      for (var i = 0; i < 10; i++) {
+      for (let i = 0; i < 10; i++) {
          addOption(newSelect, i, false);
       }
 
@@ -347,7 +328,7 @@ function addDropdowns(
    const createButton = (type) => {
       const zone_left = `${zoneName}_${type}_left`;
       // Add the button to decrement the zone items left
-      var newButton = createWithClass("input", "counter");
+      let newButton = createWithClass("input", "counter");
       newButton.type = "button";
       newButton.name = zone_left;
       newButton.id = zone_left;
@@ -358,8 +339,8 @@ function addDropdowns(
 
       // Decrement the number on the button when left clicked
       newButton.onclick = () => {
-         var zoneButton = document.getElementById(zone_left);
-         var btnValue = parseInt(zoneButton.value);
+         let zoneButton = document.getElementById(zone_left);
+         let btnValue = parseInt(zoneButton.value);
 
          if (btnValue > 0) {
             zoneButton.value = btnValue - 1;
@@ -370,9 +351,9 @@ function addDropdowns(
       // Increment the number on the button when right clicked
       newButton.onauxclick = (e) => {
          if (e.button == 2) {
-            var zoneButton = document.getElementById(zone_left);
-            var btnValue = parseInt(zoneButton.value);
-            var zoneItems = getNumItems(zoneName, type);
+            let zoneButton = document.getElementById(zone_left);
+            let btnValue = parseInt(zoneButton.value);
+            let zoneItems = getNumItems(zoneName, type);
             if (btnValue < zoneItems) {
                zoneButton.value = btnValue + 1;
                zoneButton.innerHtml = btnValue + 1;
@@ -391,7 +372,7 @@ function addDropdowns(
       newItem.appendChild(tankButtons);
    }
 
-   var zt = createWithClass("div", "zt");
+   let zt = createWithClass("div", "zt");
    if (showTitles && showCounts != "both") {
       zt.innerText = zoneTitle;
    }
@@ -399,7 +380,7 @@ function addDropdowns(
 
    if (showBoss) {
       const settings = loadSettings();
-      var bossSelect = createWithClass("select", "boss");
+      let bossSelect = createWithClass("select", "boss");
       bossSelect.name = zoneName + "_boss";
       bossSelect.id = zoneName + "_boss";
       bossSelect.title =
@@ -439,9 +420,9 @@ function addDropdowns(
 }
 
 function addEntry(masterList, className, name, mode) {
-   var newPair = document.createElement("li");
+   let newPair = document.createElement("li");
 
-   var newEntry = createWithClass("div", "portal");
+   let newEntry = createWithClass("div", "portal");
    newEntry.innerText = name;
    newEntry.classList.add(className);
 
@@ -476,21 +457,21 @@ function addEntry(masterList, className, name, mode) {
 
 function setPair(src, dst) {
    // Grab the parent list item of the src portal
-   var theParent = src.parentNode;
+   let theParent = src.parentNode;
 
    // Stop drawing the selection border around the src portal
    src.style = null;
 
    // Remove all portals other than the src from the parent
    while (theParent.children.length > 1) {
-      var pairedPortalName = theParent.lastChild.innerText;
+      let pairedPortalName = theParent.lastChild.innerText;
       theParent.removeChild(theParent.lastChild);
       //Remove the pairing from the other side of the portal so the data stays in sync
-      var portals = document.getElementsByClassName("portal");
+      let portals = document.getElementsByClassName("portal");
       for (let i = 0; i < portals.length; i++) {
-         var portal = portals[i];
+         let portal = portals[i];
          if (portal.innerText === pairedPortalName) {
-            var otherParent = portal.parentNode;
+            let otherParent = portal.parentNode;
             otherParent.removeChild(otherParent.lastChild);
          }
       }
@@ -502,7 +483,7 @@ function setPair(src, dst) {
    }
 
    // Put a copy of the dst next to the src
-   var clonedNode = dst.cloneNode(true);
+   let clonedNode = dst.cloneNode(true);
    theParent.appendChild(clonedNode);
 }
 
