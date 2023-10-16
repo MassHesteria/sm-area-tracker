@@ -263,7 +263,7 @@ function updateCounter() {
    const settings = loadSettings();
    const theCounter = document.getElementById("master_item_counter");
    theCounter.style = "";
-   theCounter.innerHTML = `Items: ${settings.num_majors - knownItems}`;
+   theCounter.innerHTML = `Majors: ${settings.num_majors - knownItems}`;
 }
 
 function addDropdowns(
@@ -311,37 +311,37 @@ function addDropdowns(
             zoneButton.style = "";
             zoneButton.value = zoneItems;
             zoneButton.innerHtml = zoneItems;
-            zoneTotal.style = "opacity: 60%";
+            zoneTotal.style = "opacity: 0.5";
          } else {
             zoneButton.style = "display: none";
-            zoneTotal.style = "opacity: 100%";
+            zoneTotal.style = "opacity: 1.0";
          }
       };
-      return newSelect;
-   }
 
-   // Add options to the dropdown
-   const majorSelect = createSelect("major");
-   addOption(majorSelect, "", true);
-   for (var i = 0; i < 10; i++) {
-      addOption(majorSelect, i, false);
+      addOption(newSelect, "", true);
+      for (var i = 0; i < 10; i++) {
+         addOption(newSelect, i, false);
+      }
+
+      return newSelect;
    }
 
    let counterButtons = createWithClass("div", "cb");
    if (showCounts != "none") {
-      counterButtons.appendChild(majorSelect);
-   }
-
-   // Add options to the dropdown
-   const tankSelect = createSelect("tank");
-   addOption(tankSelect, "", true);
-   for (var i = 0; i < 10; i++) {
-      addOption(tankSelect, i, false);
+      let newLabel = createWithClass("label", "counter");
+      newLabel.htmlFor = `${zoneName}_major_total`;
+      newLabel.innerHTML = "M";
+      counterButtons.appendChild(newLabel);
+      counterButtons.appendChild(createSelect("major"));
    }
 
    let tankButtons = createWithClass("div", "cb");
    if (showCounts == "both") {
-      tankButtons.appendChild(tankSelect);
+      let newLabel = createWithClass("label", "counter");
+      newLabel.htmlFor = `${zoneName}_tank_total`;
+      newLabel.innerHTML = "E";
+      tankButtons.appendChild(newLabel);
+      tankButtons.appendChild(createSelect("tank"));
    }
 
    const createButton = (type) => {
@@ -385,11 +385,11 @@ function addDropdowns(
    if (showCounts != "none") {
       counterButtons.appendChild(createButton("major"));
    }
+   newItem.appendChild(counterButtons);
    if (showCounts == "both") {
       tankButtons.appendChild(createButton("tank"));
+      newItem.appendChild(tankButtons);
    }
-   newItem.appendChild(counterButtons);
-   newItem.appendChild(tankButtons);
 
    var zt = createWithClass("div", "zt");
    if (showTitles && showCounts != "both") {
