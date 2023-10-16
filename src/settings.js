@@ -50,6 +50,20 @@ const defaultSettings = {
    eastMaridiaColor: "indigo",
 };
 
+function fixSettings(existing) {
+   switch (existing['show_counts']) {
+      case 'no':
+         existing['show_counts'] = 'none';
+         break;
+      case 'yes':
+      case '':
+         existing['show_counts'] = 'majors';
+         break;
+      default:
+         break;
+   }
+}
+
 function loadSettings() {
    try {
       let str = window.localStorage.getItem(appName);
@@ -57,6 +71,9 @@ function loadSettings() {
       // Found existing settings?
       if (str !== null && str != "") {
          let existing = JSON.parse(str);
+
+         // Map old settings values to new ones
+         fixSettings(existing);
 
          // Add entries to existing settings using the defaults
          // if new options were added.

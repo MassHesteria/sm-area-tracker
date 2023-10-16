@@ -181,7 +181,9 @@ const initialize = (body) => {
    body.addEventListener("click", removeSelectionClick);
    body.addEventListener("keydown", removeSelectionKey);
 
-   updateCounter();
+   if (showCounts != "none") {
+      updateCounter();
+   }
 };
 
 function removeSelectionClick(event) {
