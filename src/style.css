@@ -131,6 +131,10 @@ select.boss {
    flex-wrap: wrap;
 }
 
+.font_18 {
+   font-size: 18px;
+}
+
 .font_24 {
    font-size: 24px;
 }

@@ -19,10 +19,7 @@ const initialize = (body) => {
 
    ['sub1', 'sub2', 'sub3'].forEach(p => {
       const list = document.getElementById(p);
-      list.classList.add('portal_list');
-      if (settings.font_size == "24") {
-         list.classList.add('font_24');
-      }
+      list.classList.add('portal_list', `font_${settings.font_size}`);
    });
 
    const addArea = (
