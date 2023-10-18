@@ -30,25 +30,6 @@ body {
    text-decoration: none;
 }
 
-ul {
-   list-style: none;
-   justify-content: left;
-   padding-inline-start: 40px;
-}
-
-ul.sub_list {
-   padding-inline-start: 0px;
-}
-
-ul.portal_list {
-   padding-inline-start: 0px;
-   padding-right: 20px;
-   margin-left: 10px;
-   font-size: 18px;
-   display: flex;
-   flex-wrap: wrap;
-}
-
 #master_item_counter {
    margin-top: 16px;
    height: 30px;
@@ -121,6 +102,10 @@ select.total {
    font-weight: bold;
 }
 
+.boss_container {
+   margin-left: auto;
+}
+
 select.boss {
    width: 50px;
    min-width: 50px;
@@ -132,18 +117,19 @@ select.boss {
 .cb {
    width: 170px;
    min-width: 170px;
-   display: inline-block;
    height: 30px;
 }
 
-#portal_list {
+.portal_list {
    float: left;
-   width: 500px;
-   border-width: 2px;
-   border-color: white;
-   padding-right: 0px;
+   width: 434px;
    height: 100%;
-   margin-top: -10px;
+   padding-inline-start: 0px;
+   padding-right: 20px;
+   margin-left: 10px;
+   font-size: 18px;
+   display: flex;
+   flex-wrap: wrap;
 }
 
 .portal {
@@ -168,15 +154,18 @@ select.boss {
    border-radius: 6px;
 }
 
+.portal_pair {
+   width: 100%;
+}
+
 .spacer {
    height: 20px;
+   width: 100%;
 }
 
 .zt {
    font-style: italic;
    font-size: 16px;
-   display: inline-block;
-   width: -webkit-fill-available;
    padding-top: 0.5em;
 }
 
@@ -207,11 +196,12 @@ select.boss {
    text-align: center;
 }
 
-li.dropdowns {
+.dropdowns {
    height: 36px;
    margin-top: 10px;
    display: flex;
    padding-right: 8px;
+   width: 100%;
 }
 
 .area_border {
@@ -221,6 +211,7 @@ li.dropdowns {
    margin-bottom: 0.1em;
    margin-left: 2px;
    margin-right: 8px;
+   width: 100%;
 }
 
 .select_color_picker {

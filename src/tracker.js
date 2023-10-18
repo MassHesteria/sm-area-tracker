@@ -11,6 +11,15 @@ const initialize = (body) => {
       return false;
    };
 
+   let sub1 = document.getElementById('sub1');
+   sub1.classList.add('portal_list')
+
+   let sub2 = document.getElementById('sub2');
+   sub2.classList.add('portal_list')
+
+   let sub3 = document.getElementById('sub3');
+   sub3.classList.add('portal_list')
+
    let settings = loadSettings();
    let showBosses = settings.show_bosses == "yes";
    let selectMode = settings.select_mode;
@@ -217,7 +226,7 @@ let getNumItems = (zone, type) => {
 
 function addCounter(listName) {
    let masterList = document.getElementById(listName);
-   let newCounter = document.createElement("li");
+   let newCounter = document.createElement("div");
 
    newCounter.id = "master_item_counter";
    newCounter.style = "display: none";
@@ -257,7 +266,7 @@ function addDropdowns(
    showTitles,
    showBoss
 ) {
-   let newItem = createWithClass("li", "dropdowns");
+   let newItem = createWithClass("div", "dropdowns");
 
    let addOption = (item, option, selected) => {
       let newOption = document.createElement("option");
@@ -335,8 +344,9 @@ function addDropdowns(
       newButton.name = zone_left;
       newButton.id = zone_left;
       newButton.style = "display: none";
-      newButton.title =
-         "Number of majors remaining in area\n\n" +
+      newButton.title = (type == "majors" ?
+         "Number of majors remaining in area\n\n" :
+         "Number of energy tanks remaining in area\n\n") +
          "Left click to decrease, right click to increase";
 
       // Decrement the number on the button when left clicked
@@ -411,20 +421,21 @@ function addDropdowns(
             e.target.classList.add(settings.lowerNorfairColor);
          }
       };
-      newItem.appendChild(bossSelect);
+      let bossContainer = createWithClass('div','boss_container');
+      bossContainer.appendChild(bossSelect);
+      newItem.appendChild(bossContainer);
    }
 
    masterList.appendChild(newItem);
 
    if (showTitles) {
-      masterList.appendChild(createWithClass("li", "area_border"));
+      masterList.appendChild(createWithClass("div", "area_border"));
    }
 }
 
 function addEntry(masterList, className, name, mode) {
-   let newPair = document.createElement("li");
-
-   let newEntry = createWithClass("div", "portal");
+   let newPair = createWithClass('div','portal_pair');
+   let newEntry = createWithClass("span", "portal");
    newEntry.innerText = name;
    newEntry.classList.add(className);
 
