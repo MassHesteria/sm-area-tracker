@@ -5,6 +5,7 @@ const inputValues = [
    "num_columns",
    "num_majors",
    "show_titles",
+   "font_size",
    "crateria_portal_name_01",
    "crateria_portal_name_02",
    "crateria_portal_name_03",

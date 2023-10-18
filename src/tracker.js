@@ -11,20 +11,19 @@ const initialize = (body) => {
       return false;
    };
 
-   let sub1 = document.getElementById('sub1');
-   sub1.classList.add('portal_list')
+   const settings = loadSettings();
+   const showBosses = settings.show_bosses == "yes";
+   const selectMode = settings.select_mode;
+   const showTitles = settings.show_titles == "yes";
+   const showCounts = settings.show_counts;
 
-   let sub2 = document.getElementById('sub2');
-   sub2.classList.add('portal_list')
-
-   let sub3 = document.getElementById('sub3');
-   sub3.classList.add('portal_list')
-
-   let settings = loadSettings();
-   let showBosses = settings.show_bosses == "yes";
-   let selectMode = settings.select_mode;
-   let showTitles = settings.show_titles == "yes";
-   let showCounts = settings.show_counts;
+   ['sub1', 'sub2', 'sub3'].forEach(p => {
+      const list = document.getElementById(p);
+      list.classList.add('portal_list');
+      if (settings.font_size == "24") {
+         list.classList.add('font_24');
+      }
+   });
 
    const addArea = (
       zoneTitle,
@@ -288,9 +287,10 @@ function addDropdowns(
       let newSelect = createWithClass("select", "total");
       newSelect.name = zone_total;
       newSelect.id = zone_total;
-      newSelect.title =
-         "Select the number of majors in this area " +
-         "[useful for Full Countdown]";
+      newSelect.title = (type == "majors" ?
+         "Select the number of majors in this area " :
+         "Select the number of energy tanks in this area") +
+         " [useful for Full Countdown]";
 
       // Respond to changing the selected value
       newSelect.onchange = () => {

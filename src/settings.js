@@ -6,6 +6,7 @@ const defaultSettings = {
    num_columns: "2",
    num_majors: "16",
    show_titles: "yes",
+   font_size: "18",
    crateria_portal_name_01: "Retro PBs",
    crateria_portal_name_02: "G4",
    crateria_portal_name_03: "Kago",
