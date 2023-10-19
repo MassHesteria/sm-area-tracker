@@ -2,7 +2,6 @@ body {
    background-color: black;
    font-family: Arial, Helvetica, sans-serif;
    color: rgb(210, 210, 210);
-   height: 100%;
 }
 
 #instructions {
@@ -118,6 +117,21 @@ select.boss {
    width: 170px;
    min-width: 170px;
    height: 30px;
+}
+
+.portal_column {
+   height: 100%;
+   width: 434px;
+   display: flex;
+   flex-wrap: wrap;
+   flex-direction: column;
+   justify-content: start;
+   margin-left: 10px;
+}
+
+.content {
+   width: 434px;
+   padding-right: 40px;
 }
 
 .portal_list {

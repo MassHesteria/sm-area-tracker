@@ -6,8 +6,8 @@ const createWithClass = (tagName, className) => {
    return element;
 };
 
-const initialize = (body) => {
-   this.oncontextmenu = function (e) {
+const initialize = (window) => {
+   window.oncontextmenu = function (e) {
       return false;
    };
 
@@ -16,11 +16,29 @@ const initialize = (body) => {
    const selectMode = settings.select_mode;
    const showTitles = settings.show_titles == "yes";
    const showCounts = settings.show_counts;
+   const {
+      num_columns,
+      font_size
+   } = settings;
 
-   ['sub1', 'sub2', 'sub3'].forEach(p => {
-      const list = document.getElementById(p);
-      list.classList.add('portal_list', `font_${settings.font_size}`);
-   });
+   const initColumns = () => {
+      const body = document.getElementsByTagName('body')[0];
+      if (num_columns == "dynamic") {
+         const list = document.getElementById('sub1');
+         list.classList.add('portal_column', `font_${font_size}`);
+         body.style = "height: 96vh; width: 90vw";
+         return { group1: 'sub1', group2: 'sub1', group3: 'sub1' };
+      } else {
+         ['sub1', 'sub2', 'sub3'].forEach(p => {
+            const list = document.getElementById(p);
+            list.classList.add('portal_list', `font_${font_size}`);
+         });
+         body.style = "height: 100%";
+         return { group1: 'sub1', group2: 'sub2', group3: 'sub3' };
+      }
+   }
+
+   const { group1, group2, group3 } = initColumns();
 
    const addArea = (
       zoneTitle,
@@ -32,24 +50,34 @@ const initialize = (body) => {
    ) => {
       let listObj = document.getElementById(listName);
 
-      addDropdowns(
-         zoneTitle,
-         listObj,
-         className,
-         showCounts,
-         showTitles,
-         showBosses
-      );
-      portals.forEach((p) => {
-         addEntry(listObj, zoneColor, p, selectMode);
-      });
+      const addAll = (container) => {
+         addDropdowns(
+            zoneTitle,
+            container,
+            className,
+            showCounts,
+            showTitles,
+            showBosses
+         );
+         portals.forEach((p) => {
+            addEntry(container, zoneColor, p, selectMode);
+         });
+      }
+
+      if (num_columns == "dynamic") {
+         let content = createWithClass('div', 'content');
+         addAll(content);
+         listObj.appendChild(content)
+      } else {
+         addAll(listObj);
+      }
    };
 
    updateInstructions(selectMode);
 
    addArea(
       "Crateria",
-      "sub1",
+      group1,
       "crateria",
       false,
       [
@@ -64,7 +92,7 @@ const initialize = (body) => {
 
    addArea(
       "Green Brinstar",
-      "sub1",
+      group1,
       "greenBrinstar",
       false,
       [
@@ -75,7 +103,7 @@ const initialize = (body) => {
       settings.greenBrinstarColor
    );
 
-   let redBrinSub = settings.num_columns == 3 ? "sub2" : "sub1";
+   const redBrinSub = num_columns == "3" ? group2 : group1;
    addArea(
       "Red Brinstar",
       redBrinSub,
@@ -94,7 +122,7 @@ const initialize = (body) => {
 
    addArea(
       "West Maridia",
-      "sub1",
+      group1,
       "westMaridia",
       false,
       [
@@ -108,7 +136,7 @@ const initialize = (body) => {
 
    addArea(
       "Upper Norfair",
-      "sub2",
+      group2,
       "upperNorfair",
       false,
       [
@@ -123,14 +151,14 @@ const initialize = (body) => {
 
    addArea(
       "Crocomire",
-      "sub2",
+      group2,
       "crocomire",
       false,
       [settings.croc_portal_name],
       settings.crocColor
    );
 
-   const bossSub = settings.num_columns == 3 ? "sub3" : "sub2";
+   const bossSub = num_columns == "3" ? group3 : group2;
 
    addArea(
       "Kraid's Lair",
@@ -183,8 +211,8 @@ const initialize = (body) => {
    addEntry(masterList, "tourian", settings.tourian_portal_name, selectMode);
    addCounter(bossSub);
 
-   body.addEventListener("click", removeSelectionClick);
-   body.addEventListener("keydown", removeSelectionKey);
+   window.addEventListener("click", removeSelectionClick);
+   window.addEventListener("keydown", removeSelectionKey);
 
    if (showCounts != "none") {
       updateCounter();
