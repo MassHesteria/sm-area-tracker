@@ -31,7 +31,7 @@ const initialize = (window) => {
       } else {
          ['sub1', 'sub2', 'sub3'].forEach(p => {
             const list = document.getElementById(p);
-            list.classList.add('portal_list', `font_${font_size}`);
+            list.classList.add('portal_list', `font_${font_size}`, 'float_column_left');
          });
          body.style = "height: 100%";
          return { group1: 'sub1', group2: 'sub2', group3: 'sub3' };
@@ -66,7 +66,9 @@ const initialize = (window) => {
 
       if (num_columns == "dynamic") {
          let content = createWithClass('div', 'content');
-         addAll(content);
+         let subcontent = createWithClass('div', 'portal_list');
+         addAll(subcontent);
+         content.appendChild(subcontent);
          listObj.appendChild(content)
       } else {
          addAll(listObj);
