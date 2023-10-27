@@ -28,8 +28,9 @@
 
          <label for="show_counts">Show Countdown UI:</label>
          <select name="show_counts" id="show_counts" onchange="saveChanges()">
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
+            <option value="none">None</option>
+            <option value="majors">Majors</option>
+            <option value="both">Majors & Energy Tanks</option>
          </select>
 
          <br /><br />
@@ -38,6 +39,17 @@
          <select name="num_columns" id="num_columns" onchange="saveChanges()">
             <option value="2">2</option>
             <option value="3">3</option>
+            <option value="dynamic">Dynamic</option>
+         </select>
+
+         <br /><br />
+
+         <label for="num_majors">Num Majors:</label>
+         <select name="num_majors" id="num_majors" onchange="saveChanges()">
+            <option value="16">16 (vanilla)</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
          </select>
 
          <br /><br />
@@ -50,9 +62,17 @@
 
          <br /><br />
 
+         <label for="font_size">Font Size:</label>
+         <select name="font_size" id="font_size" onchange="saveChanges()">
+            <option value="18">18</option>
+            <option value="24">24</option>
+         </select>
+
+         <br /><br />
+
          <details>
             <summary class="customize_title">
-               <label for="portal_names"><u>Customize Portals</u></label>
+               <u>Customize Portals</u>
             </summary>
             <details>
                <summary class="customize"><u>Crateria</u></summary>

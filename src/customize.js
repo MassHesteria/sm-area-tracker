@@ -3,7 +3,9 @@ const inputValues = [
    "show_bosses",
    "show_counts",
    "num_columns",
+   "num_majors",
    "show_titles",
+   "font_size",
    "crateria_portal_name_01",
    "crateria_portal_name_02",
    "crateria_portal_name_03",
@@ -59,11 +61,11 @@ const colorPickerElements = [
    "lowerNorfairColor",
    "wreckedShipColor",
    "eastMaridiaColor",
-]
+];
 
 function initialize() {
    displaySettings(loadSettings());
-   colorPickerElements.forEach( (i) => {
+   colorPickerElements.forEach((i) => {
       updateColorPicker(i);
    });
 }
@@ -74,7 +76,6 @@ function displaySettings(settings) {
       if (settings[i] !== undefined) {
          item.value = settings[i];
       } else {
-
          item.value = defaultSettings[i];
       }
    });
@@ -83,7 +84,7 @@ function displaySettings(settings) {
 function restoreDefaults() {
    saveSettings(defaultSettings);
    displaySettings(defaultSettings);
-   colorPickerElements.forEach( (i) => {
+   colorPickerElements.forEach((i) => {
       updateColorPicker(i);
    });
 }
@@ -103,6 +104,4 @@ function updateColorPicker(elementID) {
    //Change the color of the picker to reflect the user's selection
    element = document.getElementById(elementID);
    element.className = "select_color_picker " + element.value;
-   
 }
-

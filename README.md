@@ -1,4 +1,4 @@
-**sm-area-tracker** is a web-based utility for tracking transitions between areas when running Super Metroid Area Randomizer seeds generated using the [VARIA Randomizer](http://varia.run).
+**sm-area-tracker** is a web-based utility for tracking transitions between areas when running Super Metroid Area Randomizer seeds generated using the [VARIA Randomizer](http://varia.run) or the [DASH Randomizer](https://dashrando.net).
 
 This tracker is hosted at [https://masshesteria.github.io/sm-area-tracker](https://masshesteria.github.io/sm-area-tracker) but can also be run locally simply by downloading the source code and opening the `src/index.htm` file in a browser.
 

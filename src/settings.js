@@ -2,9 +2,11 @@ const appName = "sm-area-tracker";
 const defaultSettings = {
    select_mode: "left",
    show_bosses: "yes",
-   show_counts: "yes",
+   show_counts: "majors",
    num_columns: "2",
+   num_majors: "16",
    show_titles: "yes",
+   font_size: "18",
    crateria_portal_name_01: "Retro PBs",
    crateria_portal_name_02: "G4",
    crateria_portal_name_03: "Kago",
@@ -47,8 +49,21 @@ const defaultSettings = {
    lowerNorfairColor: "white",
    wreckedShipColor: "yellow",
    eastMaridiaColor: "indigo",
-
 };
+
+function fixSettings(existing) {
+   switch (existing['show_counts']) {
+      case 'no':
+         existing['show_counts'] = 'none';
+         break;
+      case 'yes':
+      case '':
+         existing['show_counts'] = 'majors';
+         break;
+      default:
+         break;
+   }
+}
 
 function loadSettings() {
    try {
@@ -57,6 +72,9 @@ function loadSettings() {
       // Found existing settings?
       if (str !== null && str != "") {
          let existing = JSON.parse(str);
+
+         // Map old settings values to new ones
+         fixSettings(existing);
 
          // Add entries to existing settings using the defaults
          // if new options were added.
