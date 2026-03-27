@@ -172,18 +172,6 @@ const initialize = (window) => {
    );
 
    addArea(
-      "Lower Norfair",
-      bossSub,
-      "lowerNorfair",
-      showBosses,
-      [
-         settings.lowerNorfair_portal_name_01,
-         settings.lowerNorfair_portal_name_02
-      ],
-      settings.lowerNorfairColor
-   );
-
-   addArea(
       "Wrecked Ship",
       bossSub,
       "wreckedShip",
@@ -205,6 +193,18 @@ const initialize = (window) => {
          settings.eastMaridia_portal_name_02
       ],
       settings.eastMaridiaColor
+   );
+
+   addArea(
+      "Lower Norfair",
+      bossSub,
+      "lowerNorfair",
+      showBosses,
+      [
+         settings.lowerNorfair_portal_name_01,
+         settings.lowerNorfair_portal_name_02
+      ],
+      settings.lowerNorfairColor
    );
 
    let masterList = document.getElementById(bossSub);
